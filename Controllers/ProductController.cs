@@ -6,14 +6,14 @@ using UberAPI.Model;
 
 namespace UberAPI.Controllers
 {
-    [Route("api/[controller]")]
+    // [Route("api/[controller]")]
     [ApiController]
     public class ProductController : ControllerBase
     {
         [HttpGet]
         [Route("/uber/api/products")]
         [Consumes("application/json")]
-        public Task<IActionResult> GetProducts([FromQuery(Name = "latitude"), Required] float locationLat, [FromQuery(Name = "longitude"), Required] float locationLong)
+        public Task<IActionResult> GetProducts([FromQuery(Name = "productLocation"), Required] Location productLocation)
         {
             throw new NotImplementedException();
         }
@@ -21,7 +21,7 @@ namespace UberAPI.Controllers
         [HttpGet]
         [Route("/uber/api/products/{product_id}")]
         [Consumes("application/json")]
-        public async Task<IActionResult> GetProductId([FromRoute (Name = "product_id")][Required]string product_id)
+        public Task<IActionResult> GetProductId([FromRoute (Name = "product_id")][Required]Guid productId)
         {
             throw new NotImplementedException();
         }
