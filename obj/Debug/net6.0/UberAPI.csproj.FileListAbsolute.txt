@@ -1,0 +1,7 @@
+C:\Users\JohnI\Desktop\RideSaver\RideShare_API_Server\UberAPI\obj\Debug\net6.0\UberAPI.csproj.AssemblyReference.cache
+C:\Users\JohnI\Desktop\RideSaver\RideShare_API_Server\UberAPI\obj\Debug\net6.0\UberAPI.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\JohnI\Desktop\RideSaver\RideShare_API_Server\UberAPI\obj\Debug\net6.0\UberAPI.AssemblyInfoInputs.cache
+C:\Users\JohnI\Desktop\RideSaver\RideShare_API_Server\UberAPI\obj\Debug\net6.0\UberAPI.AssemblyInfo.cs
+C:\Users\JohnI\Desktop\RideSaver\RideShare_API_Server\UberAPI\obj\Debug\net6.0\UberAPI.csproj.CoreCompileInputs.cache
+C:\Users\JohnI\Desktop\RideSaver\RideShare_API_Server\UberAPI\obj\Debug\net6.0\UberAPI.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\JohnI\Desktop\RideSaver\RideShare_API_Server\UberAPI\obj\Debug\net6.0\UberAPI.MvcApplicationPartsAssemblyInfo.cache
