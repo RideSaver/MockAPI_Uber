@@ -9,7 +9,7 @@ namespace UberAPI.Controllers
     {
         [HttpPost]
         [Route("/uber/api/request")]
-        public Task<IActionResult> PostRequest([FromBody] Request request) 
+        public Task<IActionResult> PostRequest([FromBody]Request request) 
         {
             // RETURNS: 202 (Accepted) 400 (Bad Request)
             // RETURNS: 403 (Missing Information or product not found)
@@ -22,7 +22,7 @@ namespace UberAPI.Controllers
 
         [HttpGet]
         [Route("/uber/api/request/{request_id}")]
-        public Task<IActionResult> GetRequest([FromRoute (Name = "request_id")][Required] Guid requestId)
+        public Task<IActionResult> GetRequest([FromRoute(Name = "request_id")][Required] Guid requestId)
         {
             // RETURNS: 202 - ongoing trip information
 
@@ -44,7 +44,7 @@ namespace UberAPI.Controllers
 
         [HttpDelete]
         [Route("/uber/api/request/{request_id}")]
-        public Task<IActionResult> DeleteRequest([FromRoute(Name = "request_id")][Required] Guid requestId)
+        public Task<IActionResult> DeleteRequest([FromRoute(Name = "request_id")][Required] string requestId)
         {
             // RETURNS: 204 NO CONTENT
 
@@ -53,7 +53,7 @@ namespace UberAPI.Controllers
 
         [HttpGet]
         [Route("/uber/api/requests/{request_id}/map")]
-        public Task<IActionResult> GetRequestMap([FromRoute(Name = "request_id")][Required] Guid requestId)
+        public Task<IActionResult> GetRequestMap([FromRoute(Name = "request_id")][Required] string requestId)
         {
             // RETURNS: 200 OK
 
@@ -62,7 +62,7 @@ namespace UberAPI.Controllers
 
         [HttpGet]
         [Route("/uber/api/requests/{request_id}/receipt")]
-        public Task<IActionResult> GetRequestReceipt([FromRoute(Name = "request_id")][Required] Guid requestId)
+        public Task<IActionResult> GetRequestReceipt([FromRoute(Name = "request_id")][Required]string requestId)
         {
             // RETURNS: 200 OK
 

@@ -9,21 +9,21 @@ namespace UberAPI.Controllers
     {
         [HttpGet]
         [Route("/uber/api/user/me")]
-        public Task<IActionResult> GetUserProfile([FromQuery] Guid userId)
+        public Task<IActionResult> GetUser([FromQuery]string userId)
         {
             throw new NotImplementedException();
         }
 
         [HttpGet]
         [Route("/uber/api/user/history")]
-        public Task<IActionResult> GetUserHistory([FromQuery(Name = "offset")][Required] int offset, [FromQuery(Name = "limit")][Required] int limit)
+        public Task<IActionResult> GetUserHistory([FromQuery(Name = "offset")][Required]int offset, [FromQuery(Name = "limit")][Required]int limit)
         {
             throw new NotImplementedException();
         }
 
         [HttpGet]
         [Route("/uber/api/user/payment")]
-        public Task<IActionResult> GetUserPayment([FromQuery(Name = "startLocation")][Required()] Location startLocation, [FromQuery(Name = "endLocation")][Required()] Location endLocation)
+        public Task<IActionResult> GetUserPayment([FromQuery(Name = "startLocation")][Required()]Location startLocation, [FromQuery(Name = "endLocation")][Required()]Location endLocation)
         {
             throw new NotImplementedException();
         }

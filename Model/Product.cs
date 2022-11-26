@@ -7,7 +7,6 @@ namespace UberAPI.Model
     {
         [Required]
         public Guid ProductId { get; set; } // Unique identified representing a specific product for given lat/long
-        [Required]
         public bool Upfront_Fare_Enabled { get; set; } 
         [Required]
         public int Capacity { get; set; } // Capacity of the product, for example, 4 people
