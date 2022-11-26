@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace UberAPI.Model
+namespace UberAPI.Models
 {
     public class PriceEstimate
     {

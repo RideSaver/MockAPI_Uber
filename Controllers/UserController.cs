@@ -1,12 +1,16 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
-using UberAPI.Model;
+using UberAPI.Interface;
+using UberAPI.Models;
 
 namespace UberAPI.Controllers
 {
     [ApiController]
     public class UserController
     {
+        private readonly IUserRepository _userRepository;
+        public UserController(IUserRepository userRepository) => _userRepository = userRepository;
+
         [HttpGet]
         [Route("/uber/api/user/me")]
         public Task<IActionResult> GetUser([FromQuery]string userId)

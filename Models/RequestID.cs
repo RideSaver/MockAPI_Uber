@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components.Routing;
 
-namespace UberAPI.Model
+namespace UberAPI.Models
 {
     public class RequestID
     {

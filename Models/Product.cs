@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 
-namespace UberAPI.Model
+namespace UberAPI.Models
 {
     public class Product
     {

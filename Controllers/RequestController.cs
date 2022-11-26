@@ -1,12 +1,16 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
-using UberAPI.Model;
+using UberAPI.Interface;
+using UberAPI.Models;
 
 namespace UberAPI.Controllers
 {
     [ApiController]
     public class RequestController : ControllerBase
     {
+        private readonly IRequestRepository _requestRepository;
+        public RequestController(IRequestRepository requestRepository) => _requestRepository = requestRepository;
+
         [HttpPost]
         [Route("/uber/api/request")]
         public Task<IActionResult> PostRequest([FromBody]Request request) 
@@ -44,7 +48,7 @@ namespace UberAPI.Controllers
 
         [HttpDelete]
         [Route("/uber/api/request/{request_id}")]
-        public Task<IActionResult> DeleteRequest([FromRoute(Name = "request_id")][Required] string requestId)
+        public Task<IActionResult> DeleteRequest([FromRoute(Name = "request_id")][Required]string requestId)
         {
             // RETURNS: 204 NO CONTENT
 
@@ -53,7 +57,7 @@ namespace UberAPI.Controllers
 
         [HttpGet]
         [Route("/uber/api/requests/{request_id}/map")]
-        public Task<IActionResult> GetRequestMap([FromRoute(Name = "request_id")][Required] string requestId)
+        public Task<IActionResult> GetRequestMap([FromRoute(Name = "request_id")][Required]string requestId)
         {
             // RETURNS: 200 OK
 

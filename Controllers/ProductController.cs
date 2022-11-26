@@ -1,30 +1,32 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
-using System.Reflection;
-using UberAPI.Model;
+using UberAPI.Interface;
+using UberAPI.Models;
 
 namespace UberAPI.Controllers
 {
     [ApiController]
     public class ProductController : ControllerBase
     {
+        private readonly IProductRepository _productRepository;
+        public ProductController(IProductRepository productRepository) => _productRepository = productRepository;
+
         [HttpGet]
         [Route("/uber/api/products")]
         [Consumes("application/json")]
-        public Task<IActionResult> GetProducts([FromQuery(Name = "productLocation"), Required]Location productLocation) 
+        public async Task<IActionResult> GetProductsAsync([FromQuery(Name = "productLocation"), Required]Location productLocation) 
         {
-            // UberX, UberXL, UberLUX, UberPOOL, UberComfort
-            // UberGreen, UberBlack, UberBlack SUV, UberWAV
-            throw new NotImplementedException();
+            await Task.Delay(100);
+            return new OkObjectResult(_productRepository.GetAvailableProducts(productLocation));
         }
 
         [HttpGet]
         [Route("/uber/api/products/{product_id}")]
         [Consumes("application/json")]
-        public Task<IActionResult> GetProduct([FromRoute(Name = "product_id")][Required]Guid productId)
+        public async Task<IActionResult> GetProductAsync([FromRoute(Name = "product_id")][Required]string productId)
         {
-            throw new NotImplementedException();
+            await Task.Delay(100);
+            return new OkObjectResult(_productRepository.GetProducts(productId));
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace UberAPI.Model
+﻿namespace UberAPI.Models
 {
     public class PriceDetails
     {
