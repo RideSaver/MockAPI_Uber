@@ -1,24 +1,30 @@
-FROM mcr.microsoft.com/devcontainers/dotnet:0-6.0 AS builder
+FROM --platform=amd64 mcr.microsoft.com/devcontainers/dotnet:0-6.0 AS builder
 
 ARG github_username
 ARG github_token
+ARG TARGETPLATFORM
 
 # Install tools
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     && apt-get -y install --no-install-recommends default-jre
-COPY .config /server/.config
+
+
 WORKDIR /server
-RUN dotnet tool restore
+
+RUN echo $github_token | base64
+RUN dotnet nuget add source --username $github_username --password $github_token --store-password-in-clear-text --name github "https://nuget.pkg.github.com/RideSaver/index.json"
+
+COPY UberAPI.csproj .
+RUN dotnet restore
 
 # Copy all files
 COPY . .
-RUN dotnet nuget add source --username $github_username --password $github_token --store-password-in-clear-text --name github "https://nuget.pkg.github.com/RideSaver/index.json"
-RUN dotnet cake --target=Publish --runtime="linux-musl"
+RUN dotnet publish -p:PublishProfile=PublishTrimmed --sc --os="linux-musl" -o publish
 
-FROM alpine:3.16 AS runtime
+FROM --platform=$TARGETPLATFORM alpine:3.16 AS runtime
 # Add labels to add information to the image
-LABEL org.opencontainers.image.source=https://github.com/RideSaver/UberAPIClient
-LABEL org.opencontainers.image.description="Uber API Mock Server for RideSaver"
+LABEL org.opencontainers.image.source=https://github.com/RideSaver/MockAPI_Uber
+LABEL org.opencontainers.image.description="Mock Uber API for RideSaver"
 LABEL org.opencontainers.image.licenses=MIT
 
 # Add tags to define the api image
