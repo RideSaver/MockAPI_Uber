@@ -69,7 +69,7 @@ jobs:
     permissions:
       contents: write
     runs-on: ubuntu-latest
-    depends-on:
+    needs:
       - docker
     steps:
       - name: Checkout
