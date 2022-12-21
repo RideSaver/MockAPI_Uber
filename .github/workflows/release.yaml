@@ -45,7 +45,7 @@ jobs:
               uses: docker/metadata-action@v4
               with:
                   images: |
-                      ghcr.io/ridesaver/ubermock
+                      ghcr.io/ridesaver/uber_mock
                   tags: |
                       type=schedule,pattern=nightly
                       type=ref,event=branch
