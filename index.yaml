@@ -2,6 +2,16 @@ apiVersion: v1
 entries:
   RideSaver_Mock_Uber:
   - apiVersion: v2
+    appVersion: 0.0.3
+    created: "2022-12-24T09:36:39.349160258Z"
+    description: A Helm chart for Kubernetes
+    digest: 34fd9a601515124c5b3a5fd1f6f564b98a8eedc87efe1ebff26a883d842ed54d
+    name: RideSaver_Mock_Uber
+    type: application
+    urls:
+    - https://github.com/RideSaver/MockAPI_Uber/releases/download/RideSaver_Mock_Uber-0.1.1/RideSaver_Mock_Uber-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
     appVersion: v0.0.2
     created: "2022-12-21T08:39:15.530195467Z"
     description: A Helm chart for Kubernetes
@@ -11,4 +21,4 @@ entries:
     urls:
     - https://github.com/RideSaver/MockAPI_Uber/releases/download/RideSaver_Mock_Uber-0.1.0/RideSaver_Mock_Uber-0.1.0.tgz
     version: 0.1.0
-generated: "2022-12-21T08:39:15.530216267Z"
+generated: "2022-12-24T09:36:39.349167358Z"
