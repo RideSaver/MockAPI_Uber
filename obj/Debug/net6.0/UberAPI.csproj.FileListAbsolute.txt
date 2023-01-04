@@ -37,3 +37,5 @@ C:\Users\JohnI\Desktop\RideSaver\MockAPI_Uber\obj\Debug\net6.0\refint\UberAPI.dl
 C:\Users\JohnI\Desktop\RideSaver\MockAPI_Uber\obj\Debug\net6.0\UberAPI.pdb
 C:\Users\JohnI\Desktop\RideSaver\MockAPI_Uber\obj\Debug\net6.0\UberAPI.genruntimeconfig.cache
 C:\Users\JohnI\Desktop\RideSaver\MockAPI_Uber\obj\Debug\net6.0\ref\UberAPI.dll
+C:\Users\JohnI\Desktop\RideSaver\MockAPI_Uber\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\Users\JohnI\Desktop\RideSaver\MockAPI_Uber\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll

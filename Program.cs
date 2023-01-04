@@ -14,7 +14,6 @@ builder.Services.AddHealthChecks();
 builder.Services.AddTransient<IEstimateRepository, EstimateRepository>();
 builder.Services.AddTransient<IProductRepository, ProductRepository>();
 builder.Services.AddTransient<IRequestRepository, RequestRepository>();
-builder.Services.AddTransient<IUserRepository, UserRepository>();
 
 builder.Services.Configure<ListenOptions>(options =>
 {

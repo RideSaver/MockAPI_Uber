@@ -5,61 +5,43 @@ using Newtonsoft.Json;
 namespace UberAPI.Models
 { 
     [DataContract]
-    public class Trip : IEquatable<Trip>
+    public class RequestIdLocation : IEquatable<RequestIdLocation>
     { 
-        [DataMember(Name="alias")]
-        public string Alias { get; set; }
-
         [DataMember(Name="latitude")]
         public float? Latitude { get; set; }
 
         [DataMember(Name="longitude")]
         public float? Longitude { get; set; }
 
-        [DataMember(Name="name")]
-        public string Name { get; set; }
-
-        [DataMember(Name="address")]
-        public string Address { get; set; }
-
-        [DataMember(Name="eta")]
-        public float? Eta { get; set; }
+        [DataMember(Name="bearing")]
+        public int? Bearing { get; set; }
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class Trip {\n");
-            sb.Append("  Alias: ").Append(Alias).Append("\n");
+            sb.Append("class RequestIdLocation {\n");
             sb.Append("  Latitude: ").Append(Latitude).Append("\n");
             sb.Append("  Longitude: ").Append(Longitude).Append("\n");
-            sb.Append("  Name: ").Append(Name).Append("\n");
-            sb.Append("  Address: ").Append(Address).Append("\n");
-            sb.Append("  Eta: ").Append(Eta).Append("\n");
+            sb.Append("  Bearing: ").Append(Bearing).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
+
         public string ToJson()
         {
             return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
-
         public override bool Equals(object obj)
         {
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
-            return obj.GetType() == GetType() && Equals((Trip)obj);
+            return obj.GetType() == GetType() && Equals((RequestIdLocation)obj);
         }
-
-        public bool Equals(Trip other)
+        public bool Equals(RequestIdLocation other)
         {
             if (ReferenceEquals(null, other)) return false;
             if (ReferenceEquals(this, other)) return true;
 
             return 
-                (
-                    Alias == other.Alias ||
-                    Alias != null &&
-                    Alias.Equals(other.Alias)
-                ) && 
                 (
                     Latitude == other.Latitude ||
                     Latitude != null &&
@@ -71,19 +53,9 @@ namespace UberAPI.Models
                     Longitude.Equals(other.Longitude)
                 ) && 
                 (
-                    Name == other.Name ||
-                    Name != null &&
-                    Name.Equals(other.Name)
-                ) && 
-                (
-                    Address == other.Address ||
-                    Address != null &&
-                    Address.Equals(other.Address)
-                ) && 
-                (
-                    Eta == other.Eta ||
-                    Eta != null &&
-                    Eta.Equals(other.Eta)
+                    Bearing == other.Bearing ||
+                    Bearing != null &&
+                    Bearing.Equals(other.Bearing)
                 );
         }
         public override int GetHashCode()
@@ -92,18 +64,12 @@ namespace UberAPI.Models
             {
                 var hashCode = 41;
                 // Suitable nullity checks etc, of course :)
-                    if (Alias != null)
-                    hashCode = hashCode * 59 + Alias.GetHashCode();
                     if (Latitude != null)
                     hashCode = hashCode * 59 + Latitude.GetHashCode();
                     if (Longitude != null)
                     hashCode = hashCode * 59 + Longitude.GetHashCode();
-                    if (Name != null)
-                    hashCode = hashCode * 59 + Name.GetHashCode();
-                    if (Address != null)
-                    hashCode = hashCode * 59 + Address.GetHashCode();
-                    if (Eta != null)
-                    hashCode = hashCode * 59 + Eta.GetHashCode();
+                    if (Bearing != null)
+                    hashCode = hashCode * 59 + Bearing.GetHashCode();
                 return hashCode;
             }
         }
@@ -111,12 +77,12 @@ namespace UberAPI.Models
         #region Operators
         #pragma warning disable 1591
 
-        public static bool operator ==(Trip left, Trip right)
+        public static bool operator ==(RequestIdLocation left, RequestIdLocation right)
         {
             return Equals(left, right);
         }
 
-        public static bool operator !=(Trip left, Trip right)
+        public static bool operator !=(RequestIdLocation left, RequestIdLocation right)
         {
             return !Equals(left, right);
         }

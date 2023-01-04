@@ -5,30 +5,27 @@ using Newtonsoft.Json;
 namespace UberAPI.Models
 { 
     [DataContract]
-    public class TimeEstimate : IEquatable<TimeEstimate>
+    public class ActivitiesHistoryStartCity : IEquatable<ActivitiesHistoryStartCity>
     { 
-        [DataMember(Name="localized_display_name")]
-        public string LocalizedDisplayName { get; set; }
-
-        [DataMember(Name="estimate")]
-        public int? Estimate { get; set; }
+        [DataMember(Name="latitude")]
+        public float? Latitude { get; set; }
 
         [DataMember(Name="display_name")]
         public string DisplayName { get; set; }
 
-        [DataMember(Name="product_id")]
-        public string ProductId { get; set; }
+        [DataMember(Name="longitude")]
+        public float? Longitude { get; set; }
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class TimeEstimate {\n");
-            sb.Append("  LocalizedDisplayName: ").Append(LocalizedDisplayName).Append("\n");
-            sb.Append("  Estimate: ").Append(Estimate).Append("\n");
+            sb.Append("class ActivitiesHistoryStartCity {\n");
+            sb.Append("  Latitude: ").Append(Latitude).Append("\n");
             sb.Append("  DisplayName: ").Append(DisplayName).Append("\n");
-            sb.Append("  ProductId: ").Append(ProductId).Append("\n");
+            sb.Append("  Longitude: ").Append(Longitude).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
+
         public string ToJson()
         {
             return JsonConvert.SerializeObject(this, Formatting.Indented);
@@ -37,23 +34,18 @@ namespace UberAPI.Models
         {
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
-            return obj.GetType() == GetType() && Equals((TimeEstimate)obj);
+            return obj.GetType() == GetType() && Equals((ActivitiesHistoryStartCity)obj);
         }
-        public bool Equals(TimeEstimate other)
+        public bool Equals(ActivitiesHistoryStartCity other)
         {
             if (ReferenceEquals(null, other)) return false;
             if (ReferenceEquals(this, other)) return true;
 
             return 
                 (
-                    LocalizedDisplayName == other.LocalizedDisplayName ||
-                    LocalizedDisplayName != null &&
-                    LocalizedDisplayName.Equals(other.LocalizedDisplayName)
-                ) && 
-                (
-                    Estimate == other.Estimate ||
-                    Estimate != null &&
-                    Estimate.Equals(other.Estimate)
+                    Latitude == other.Latitude ||
+                    Latitude != null &&
+                    Latitude.Equals(other.Latitude)
                 ) && 
                 (
                     DisplayName == other.DisplayName ||
@@ -61,9 +53,9 @@ namespace UberAPI.Models
                     DisplayName.Equals(other.DisplayName)
                 ) && 
                 (
-                    ProductId == other.ProductId ||
-                    ProductId != null &&
-                    ProductId.Equals(other.ProductId)
+                    Longitude == other.Longitude ||
+                    Longitude != null &&
+                    Longitude.Equals(other.Longitude)
                 );
         }
         public override int GetHashCode()
@@ -72,14 +64,12 @@ namespace UberAPI.Models
             {
                 var hashCode = 41;
                 // Suitable nullity checks etc, of course :)
-                    if (LocalizedDisplayName != null)
-                    hashCode = hashCode * 59 + LocalizedDisplayName.GetHashCode();
-                    if (Estimate != null)
-                    hashCode = hashCode * 59 + Estimate.GetHashCode();
+                    if (Latitude != null)
+                    hashCode = hashCode * 59 + Latitude.GetHashCode();
                     if (DisplayName != null)
                     hashCode = hashCode * 59 + DisplayName.GetHashCode();
-                    if (ProductId != null)
-                    hashCode = hashCode * 59 + ProductId.GetHashCode();
+                    if (Longitude != null)
+                    hashCode = hashCode * 59 + Longitude.GetHashCode();
                 return hashCode;
             }
         }
@@ -87,12 +77,12 @@ namespace UberAPI.Models
         #region Operators
         #pragma warning disable 1591
 
-        public static bool operator ==(TimeEstimate left, TimeEstimate right)
+        public static bool operator ==(ActivitiesHistoryStartCity left, ActivitiesHistoryStartCity right)
         {
             return Equals(left, right);
         }
 
-        public static bool operator !=(TimeEstimate left, TimeEstimate right)
+        public static bool operator !=(ActivitiesHistoryStartCity left, ActivitiesHistoryStartCity right)
         {
             return !Equals(left, right);
         }

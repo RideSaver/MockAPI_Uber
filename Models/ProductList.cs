@@ -5,20 +5,15 @@ using Newtonsoft.Json;
 namespace UberAPI.Models
 { 
     [DataContract]
-    public class Payment : IEquatable<Payment>
+    public class ProductList : IEquatable<ProductList>
     { 
- 
-        [DataMember(Name="payment_methods")]
-        public List<PaymentMethod> PaymentMethods { get; set; }
-
-        [DataMember(Name="last_used")]
-        public string LastUsed { get; set; }
+        [DataMember(Name="products")]
+        public List<Product> Products { get; set; }
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class Payment {\n");
-            sb.Append("  PaymentMethods: ").Append(PaymentMethods).Append("\n");
-            sb.Append("  LastUsed: ").Append(LastUsed).Append("\n");
+            sb.Append("class ProductList {\n");
+            sb.Append("  Products: ").Append(Products).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -30,23 +25,18 @@ namespace UberAPI.Models
         {
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
-            return obj.GetType() == GetType() && Equals((Payment)obj);
+            return obj.GetType() == GetType() && Equals((ProductList)obj);
         }
-        public bool Equals(Payment other)
+        public bool Equals(ProductList other)
         {
             if (ReferenceEquals(null, other)) return false;
             if (ReferenceEquals(this, other)) return true;
 
             return 
                 (
-                    PaymentMethods == other.PaymentMethods ||
-                    PaymentMethods != null &&
-                    PaymentMethods.SequenceEqual(other.PaymentMethods)
-                ) && 
-                (
-                    LastUsed == other.LastUsed ||
-                    LastUsed != null &&
-                    LastUsed.Equals(other.LastUsed)
+                    Products == other.Products ||
+                    Products != null &&
+                    Products.SequenceEqual(other.Products)
                 );
         }
         public override int GetHashCode()
@@ -55,10 +45,8 @@ namespace UberAPI.Models
             {
                 var hashCode = 41;
                 // Suitable nullity checks etc, of course :)
-                    if (PaymentMethods != null)
-                    hashCode = hashCode * 59 + PaymentMethods.GetHashCode();
-                    if (LastUsed != null)
-                    hashCode = hashCode * 59 + LastUsed.GetHashCode();
+                    if (Products != null)
+                    hashCode = hashCode * 59 + Products.GetHashCode();
                 return hashCode;
             }
         }
@@ -66,12 +54,12 @@ namespace UberAPI.Models
         #region Operators
         #pragma warning disable 1591
 
-        public static bool operator ==(Payment left, Payment right)
+        public static bool operator ==(ProductList left, ProductList right)
         {
             return Equals(left, right);
         }
 
-        public static bool operator !=(Payment left, Payment right)
+        public static bool operator !=(ProductList left, ProductList right)
         {
             return !Equals(left, right);
         }

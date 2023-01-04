@@ -5,47 +5,57 @@ using Newtonsoft.Json;
 namespace UberAPI.Models
 { 
     [DataContract]
-    public class PaymentMethod : IEquatable<PaymentMethod>
+    public class RequestIdWaypoints : IEquatable<RequestIdWaypoints>
     { 
-        [DataMember(Name="payment_method_id")]
-        public string PaymentMethodId { get; set; }
+        [DataMember(Name="rider_id")]
+        public string RiderId { get; set; }
+
+        [DataMember(Name="latitude")]
+        public float? Latitude { get; set; }
 
         [DataMember(Name="type")]
         public string Type { get; set; }
 
-        [DataMember(Name="description")]
-        public string Description { get; set; }
-
+        [DataMember(Name="longitude")]
+        public float? Longitude { get; set; }
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class PaymentMethod {\n");
-            sb.Append("  PaymentMethodId: ").Append(PaymentMethodId).Append("\n");
+            sb.Append("class RequestIdWaypoints {\n");
+            sb.Append("  RiderId: ").Append(RiderId).Append("\n");
+            sb.Append("  Latitude: ").Append(Latitude).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
-            sb.Append("  Description: ").Append(Description).Append("\n");
+            sb.Append("  Longitude: ").Append(Longitude).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
+
         public string ToJson()
         {
             return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
+
         public override bool Equals(object obj)
         {
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
-            return obj.GetType() == GetType() && Equals((PaymentMethod)obj);
+            return obj.GetType() == GetType() && Equals((RequestIdWaypoints)obj);
         }
-        public bool Equals(PaymentMethod other)
+        public bool Equals(RequestIdWaypoints other)
         {
             if (ReferenceEquals(null, other)) return false;
             if (ReferenceEquals(this, other)) return true;
 
             return 
                 (
-                    PaymentMethodId == other.PaymentMethodId ||
-                    PaymentMethodId != null &&
-                    PaymentMethodId.Equals(other.PaymentMethodId)
+                    RiderId == other.RiderId ||
+                    RiderId != null &&
+                    RiderId.Equals(other.RiderId)
+                ) && 
+                (
+                    Latitude == other.Latitude ||
+                    Latitude != null &&
+                    Latitude.Equals(other.Latitude)
                 ) && 
                 (
                     Type == other.Type ||
@@ -53,9 +63,9 @@ namespace UberAPI.Models
                     Type.Equals(other.Type)
                 ) && 
                 (
-                    Description == other.Description ||
-                    Description != null &&
-                    Description.Equals(other.Description)
+                    Longitude == other.Longitude ||
+                    Longitude != null &&
+                    Longitude.Equals(other.Longitude)
                 );
         }
         public override int GetHashCode()
@@ -64,12 +74,14 @@ namespace UberAPI.Models
             {
                 var hashCode = 41;
                 // Suitable nullity checks etc, of course :)
-                    if (PaymentMethodId != null)
-                    hashCode = hashCode * 59 + PaymentMethodId.GetHashCode();
+                    if (RiderId != null)
+                    hashCode = hashCode * 59 + RiderId.GetHashCode();
+                    if (Latitude != null)
+                    hashCode = hashCode * 59 + Latitude.GetHashCode();
                     if (Type != null)
                     hashCode = hashCode * 59 + Type.GetHashCode();
-                    if (Description != null)
-                    hashCode = hashCode * 59 + Description.GetHashCode();
+                    if (Longitude != null)
+                    hashCode = hashCode * 59 + Longitude.GetHashCode();
                 return hashCode;
             }
         }
@@ -77,12 +89,12 @@ namespace UberAPI.Models
         #region Operators
         #pragma warning disable 1591
 
-        public static bool operator ==(PaymentMethod left, PaymentMethod right)
+        public static bool operator ==(RequestIdWaypoints left, RequestIdWaypoints right)
         {
             return Equals(left, right);
         }
 
-        public static bool operator !=(PaymentMethod left, PaymentMethod right)
+        public static bool operator !=(RequestIdWaypoints left, RequestIdWaypoints right)
         {
             return !Equals(left, right);
         }
