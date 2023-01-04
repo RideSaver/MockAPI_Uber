@@ -1,5 +1,6 @@
-
-
+using Microsoft.AspNetCore.HttpOverrides;
+using Microsoft.AspNetCore.Server.Kestrel.Core;
+using System.Security.Cryptography.X509Certificates;
 using UberAPI.Interface;
 using UberAPI.Repository;
 
@@ -15,6 +16,12 @@ builder.Services.AddTransient<IProductRepository, ProductRepository>();
 builder.Services.AddTransient<IRequestRepository, RequestRepository>();
 builder.Services.AddTransient<IUserRepository, UserRepository>();
 
+builder.Services.Configure<ListenOptions>(options =>
+{
+    options.UseHttps(new X509Certificate2(Path.Combine("/certs/tls.crt"), Path.Combine("/certs/tls.key")));
+});
+
+
 var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
@@ -22,8 +29,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseForwardedHeaders(new ForwardedHeadersOptions
+{
+    ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+});
+
 app.UseHttpsRedirection();
-app.UseAuthorization();
 app.MapControllers();
 app.MapHealthChecks("/healthz");
 app.Run();
