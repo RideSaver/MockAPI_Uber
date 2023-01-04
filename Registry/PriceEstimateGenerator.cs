@@ -3,7 +3,7 @@ using UberAPI.Models;
 
 namespace UberAPI.Registry
 {
-    public class PriceEstimateGenerator
+    public static class PriceEstimateGenerator
     {
         public static IEnumerable<int> HighEstimateRange = Enumerable.Range(50, 100); // Estimated Cost (maximum)
         public static IEnumerable<int> LowEstimateRange = Enumerable.Range(15, 50); // Estimated Cost (minimum)
