@@ -46,6 +46,10 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "AutoBogus": {
+              "target": "Package",
+              "version": "[2.13.1, )"
+            },
             "Newtonsoft.Json.Bson": {
               "target": "Package",
               "version": "[1.0.2, )"

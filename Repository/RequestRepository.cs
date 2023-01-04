@@ -1,5 +1,6 @@
 ﻿using UberAPI.Interface;
 using UberAPI.Models;
+using UberAPI.Registry;
 
 namespace UberAPI.Repository
 {
@@ -12,7 +13,8 @@ namespace UberAPI.Repository
 
         public RequestId GetRequest(string requestId)
         {
-            throw new NotImplementedException();
+            RequestId request = RequestGenerator.GenerateRequest();
+            return request; 
         }
 
         public void PatchRequest(string requestId)

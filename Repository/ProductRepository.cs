@@ -1,5 +1,6 @@
 ﻿using UberAPI.Interface;
 using UberAPI.Models;
+using UberAPI.Registry;
 
 namespace UberAPI.Repository
 
@@ -8,12 +9,15 @@ namespace UberAPI.Repository
     {
         public Product GetProduct(string productId)
         {
-            throw new NotImplementedException();
+            var product = ProductGenerator.GenerateProduct();
+            product.ProductId = productId;
+            return product;
         }
 
         public ProductList GetProducts(LatLng location)
         {
-            throw new NotImplementedException();
+            var productList = ProductGenerator.GenerateProducts(10);
+            return productList;
         }
     }
 }
