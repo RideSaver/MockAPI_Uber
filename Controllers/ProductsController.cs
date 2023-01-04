@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
+using UberAPI.Interface;
+using UberAPI.Models;
 
 namespace UberAPI.Controllers
 {
@@ -7,19 +9,29 @@ namespace UberAPI.Controllers
     [ApiController]
     public class ProductsController : ControllerBase
     {
- 
+        private readonly IProductRepository _productsRepository;
+        private readonly ILogger<ProductsController> _logger;
+
+        public ProductsController(IProductRepository productsRepository, ILogger<ProductsController> logger)
+        {
+            _productsRepository = productsRepository;
+            _logger = logger;
+        }
+
         [HttpGet]
         [Route("products")]
         public IActionResult GetProducts([FromQuery][Required()]double? latitude, [FromQuery][Required()]double? longitude)
-        { 
-            throw new NotImplementedException();
+        {
+            var location = new LatLng() { Lat = latitude, Lng = longitude };
+
+            return new OkObjectResult(_productsRepository.GetProducts(location));
         }
 
         [HttpGet]
         [Route("/products/{product_id}")]
-        public virtual IActionResult GetProduct([FromRoute][Required]string productId)
+        public IActionResult GetProduct([FromRoute][Required]string productId)
         {
-            throw new NotImplementedException();
+            return new OkObjectResult(_productsRepository.GetProduct(productId));
         }
     }
 }
