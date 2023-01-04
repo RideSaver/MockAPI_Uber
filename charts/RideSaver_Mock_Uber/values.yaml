@@ -27,6 +27,12 @@ securityContext: {}
   # runAsNonRoot: true
   # runAsUser: 1000
 
+certificate:
+  annotations: {}
+  ca:
+    name: ridesaver-ca
+    type: ClusterIssuer
+
 service:
   type: ClusterIP
   ports:
