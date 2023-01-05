@@ -5,8 +5,8 @@ using UberAPI.Models;
 
 namespace UberAPI.Controllers
 {
-    [Route("[controller]")]
     [ApiController]
+    [Route("[controller]")]
     public class RequestsController : ControllerBase
     {
         private readonly IRequestRepository _requestsRepository;
@@ -34,7 +34,9 @@ namespace UberAPI.Controllers
         [Route("/requests/estimate")]
         [Consumes("application/json")]
         [Produces("application/json")]
-        public IActionResult PostRequestEstimate([FromBody] RequestEstimate requestBody)
+        [ProducesResponseType(typeof(RequestEstimateResponse), 200)]
+
+        public async Task<IActionResult> PostRequestEstimate([FromBody] RequestEstimate requestBody)
         {
             if (requestBody is null) return BadRequest("Error: Invalid data receieved (null)");
 
@@ -55,7 +57,7 @@ namespace UberAPI.Controllers
             _logger.LogInformation($"[UberAPI:RequestsController:PostRequestEstimate] Data Received: Start long & lat: {requestEstimate.StartLongitude}-{requestEstimate.StartLatitude}");
             _logger.LogInformation($"[UberAPI:RequestsController:PostRequestEstimate] Data Received: End long & lat: {requestEstimate.EndLongitude}-{requestEstimate.EndLatitude}");
 
-            return new OkObjectResult(_requestsRepository.PostRequestEstimate(requestEstimate.ProductId!));
+            return new OkObjectResult(await _requestsRepository.PostRequestEstimate(requestEstimate.ProductId!));
         }
 
         [HttpPost]

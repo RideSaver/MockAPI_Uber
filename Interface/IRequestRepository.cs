@@ -8,6 +8,6 @@ namespace UberAPI.Interface
         void DeleteRequest(string requestId);
         RequestId GetRequest(string requestId);
         void PatchRequest(string requestId);
-        RequestEstimateResponse PostRequestEstimate(string requestId);
+        Task<RequestEstimateResponse> PostRequestEstimate(string requestId);
     }
 }

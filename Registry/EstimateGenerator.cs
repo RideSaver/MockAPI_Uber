@@ -63,7 +63,7 @@ namespace UberAPI.Registry
 
             if(surgeActive is null) 
             { 
-                var random = new Bogus.Randomizer();
+                var random = new Randomizer();
                 _surgeActive = random.Bool();
             }
 

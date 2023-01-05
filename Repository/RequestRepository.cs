@@ -7,7 +7,7 @@ namespace UberAPI.Repository
     public class RequestRepository : IRequestRepository
     {
         public RequestId GetRequest(string requestId) => RequestGenerator.GenerateRequest();
-        public RequestEstimateResponse PostRequestEstimate(string requestId) => new RequestEstimateResponse(EstimateGenerator.GenerateEstimateWithoutSurge());
+        public async Task<RequestEstimateResponse> PostRequestEstimate(string requestId) =>  await Task.FromResult(new RequestEstimateResponse(EstimateGenerator.GenerateEstimateWithoutSurge()));
         public void DeleteRequest(string requestId) => throw new NotImplementedException();
         public void PatchRequest(string requestId) => throw new NotImplementedException();
         public void PostRequest(Requests body) => throw new NotImplementedException();
