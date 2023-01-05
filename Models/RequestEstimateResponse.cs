@@ -90,14 +90,14 @@ namespace UberAPI.Models
         /// <returns>An instance of RequestEstimateResponse</returns>
         public static RequestEstimateResponse FromJson(string jsonString)
         {
-            RequestEstimateResponse newRequestEstimateResponse = null;
+            RequestEstimateResponse? newRequestEstimateResponse = null;
 
             if (string.IsNullOrEmpty(jsonString))
             {
-                return newRequestEstimateResponse;
+                return newRequestEstimateResponse!;
             }
             int match = 0;
-            List<string> matchedTypes = new List<string>();
+            List<string> matchedTypes = new();
 
             try
             {
@@ -149,15 +149,15 @@ namespace UberAPI.Models
             }
 
             // deserialization is considered successful at this point if no exception has been thrown.
-            return newRequestEstimateResponse;
+            return newRequestEstimateResponse!;
         }
 
-        public override bool Equals(object input)
+        public override bool Equals(object? input)
         {
-            return Equals(input as RequestEstimateResponse);
+            return Equals((RequestEstimateResponse)input!);
         }
 
-        public bool Equals(RequestEstimateResponse input)
+        public bool Equals(RequestEstimateResponse? input)
         {
             if (input == null)
                 return false;
@@ -176,7 +176,7 @@ namespace UberAPI.Models
             }
         }
 
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
@@ -195,7 +195,7 @@ namespace UberAPI.Models
         /// <param name="serializer">JSON Serializer</param>
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            writer.WriteRawValue((string)(typeof(RequestEstimateResponse).GetMethod("ToJson").Invoke(value, null)));
+            writer.WriteRawValue((typeof(RequestEstimateResponse)!.GetMethod("ToJson").Invoke(value, null)) as string);
         }
 
         /// <summary>
@@ -206,7 +206,7 @@ namespace UberAPI.Models
         /// <param name="existingValue">Existing value</param>
         /// <param name="serializer">JSON Serializer</param>
         /// <returns>The object converted from the JSON string</returns>
-        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+        public override object? ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
             if (reader.TokenType != JsonToken.Null)
             {

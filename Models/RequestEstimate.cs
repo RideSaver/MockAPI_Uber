@@ -7,7 +7,7 @@ namespace UberAPI.Models
     [DataContract(Name = "RequestEstimate")]
     public class RequestEstimate : IEquatable<RequestEstimate>, IValidatableObject
     {
-        public RequestEstimate(string productId = default, decimal startLatitude = default, decimal startLongitude = default, string startPlaceId = default, decimal endLatitude = default, decimal endLongitude = default, string endPlaceId = default, int seatCount = default)
+        public RequestEstimate(string? productId = default, decimal? startLatitude = default, decimal? startLongitude = default, string? startPlaceId = default, decimal endLatitude = default, decimal endLongitude = default, string? endPlaceId = default, int? seatCount = default)
         {
             ProductId = productId;
             StartLatitude = startLatitude;
@@ -18,30 +18,37 @@ namespace UberAPI.Models
             EndPlaceId = endPlaceId;
             SeatCount = seatCount;
         }
+        public RequestEstimate(decimal startLatitude = default, decimal startLongitude = default, decimal endLatitude = default, decimal endLongitude = default)
+        {
+            StartLatitude = startLatitude;
+            StartLongitude = startLongitude;
+            EndLatitude = endLatitude;
+            EndLongitude = endLongitude;
+        }
 
         [DataMember(Name = "product_id", EmitDefaultValue = false)]
-        public string ProductId { get; set; }
+        public string? ProductId { get; set; }
 
         [DataMember(Name = "start_latitude", EmitDefaultValue = false)]
-        public decimal StartLatitude { get; set; }
+        public decimal? StartLatitude { get; set; }
 
         [DataMember(Name = "start_longitude", EmitDefaultValue = false)]
-        public decimal StartLongitude { get; set; }
+        public decimal? StartLongitude { get; set; }
 
         [DataMember(Name = "start_place_id", EmitDefaultValue = false)]
-        public string StartPlaceId { get; set; }
+        public string? StartPlaceId { get; set; }
 
         [DataMember(Name = "end_latitude", EmitDefaultValue = false)]
-        public decimal EndLatitude { get; set; }
+        public decimal? EndLatitude { get; set; }
 
         [DataMember(Name = "end_longitude", EmitDefaultValue = false)]
-        public decimal EndLongitude { get; set; }
+        public decimal? EndLongitude { get; set; }
 
         [DataMember(Name = "end_place_id", EmitDefaultValue = false)]
-        public string EndPlaceId { get; set; }
+        public string? EndPlaceId { get; set; }
 
         [DataMember(Name = "seat_count", EmitDefaultValue = false)]
-        public int SeatCount { get; set; }
+        public int? SeatCount { get; set; }
 
 
         public override string ToString()
@@ -65,12 +72,12 @@ namespace UberAPI.Models
             return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
         }
 
-        public override bool Equals(object input)
+        public override bool Equals(object? input)
         {
-            return Equals(input as RequestEstimate);
+            return Equals((RequestEstimate)input!);
         }
 
-        public bool Equals(RequestEstimate input)
+        public bool Equals(RequestEstimate? input)
         {
             if (input == null)
             {
