@@ -12,16 +12,17 @@ namespace UberAPI.Registry
             .RuleFor(o => o.DistanceEstimate, f => f.Random.Decimal(0.0m, 1.0m));
 
         private static string[] BreakdownTypes = {"promotion", "base_fare"};
+
         private static Faker<EstimateWithoutSurgeFareBreakdownInner> FareBreakdownWithout = new AutoFaker<EstimateWithoutSurgeFareBreakdownInner>()
             .RuleFor(o => o.Type, f => f.Random.ArrayElement(BreakdownTypes))
             .RuleFor(o => o.Notice, (f, fb) => (fb.Type == "base_fare" ? f.Lorem.Sentence() : null))
-            .RuleFor(o => o.Value, f => f.Random.Double(-5, 30))
+            .RuleFor(o => o.Value, f => (decimal)f.Random.Double(-5f, 30f))
             .RuleFor(o => o.Name, (f, fb) => (fb.Type == "base_fare" ? "Base Fare" : "Promotion"));
 
         private static Faker<EstimateWithoutSurgeFare> FareWithout = new AutoFaker<EstimateWithoutSurgeFare>()
             .RuleFor(o => o.Value, f => f.Random.Decimal(5, 30))
-            .RuleFor(o => o.FareId, f => new Guid())
-            .RuleFor(o => o.ExpiresAt, f => f.Date.Soon())
+            .RuleFor(o => o.FareId, () => new Guid().ToString())
+            .RuleFor(o => o.ExpiresAt, f => Int32.Parse(f.Date.Soon().ToString()))
             .RuleFor(o => o.Display, (f, est) => $"${est.Value.ToString("0.00")}")
             .RuleFor(o => o.CurrencyCode, f => "USD")
             .RuleFor(o => o.Breakdown, f => FareBreakdownWithout.Generate(f.Random.Number(1, 3)).ToList());
@@ -33,12 +34,12 @@ namespace UberAPI.Registry
             .RuleFor(o => o.DisplayName, f => $"{f.Random.Word()} Fee");
 
         private static Faker<EstimateWithSurgeEstimate> EstimateWith = new AutoFaker<EstimateWithSurgeEstimate>()
-            .RuleFor(o => o.SurgeConfirmationId, f => f.Random.Guid())
+            .RuleFor(o => o.SurgeConfirmationId, () => new Guid().ToString())
             .RuleFor(o => o.SurgeConfirmationHref, (f, est) => $"/confirm/{est.SurgeConfirmationId}")
             .RuleFor(o => o.LowEstimate, f => f.Random.Decimal(20, 50))
             .RuleFor(o => o.HighEstimate, (f, est) => f.Random.Decimal(est.LowEstimate, 50))
             .RuleFor(o => o.Display, (f, est) => $"${est.LowEstimate}-{est.HighEstimate}")
-            .RuleFor(o => o.Minimum, f => f.Random.Number(10, 40).OrNull(f, .9f))
+            .RuleFor(o => o.Minimum, f => f.Random.Number(10, 40))
             .RuleFor(o => o.FareBreakdown, f => FareBreakdownWith.Generate(5).ToList())
             .RuleFor(o => o.SurgeMultiplier, f => f.Random.Decimal(1, 2))
             .RuleFor(o => o.CurrencyCode, f => "USD");
