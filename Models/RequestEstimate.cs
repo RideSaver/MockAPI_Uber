@@ -8,27 +8,8 @@ namespace UberAPI.Models
     [DataContract(Name = "RequestEstimate")]
     public class RequestEstimate : IEquatable<RequestEstimate>, IValidatableObject
     {
-        [JsonConstructor]
-        public RequestEstimate(string? productId = default, decimal? startLatitude = default, decimal? startLongitude = default, string? startPlaceId = default, decimal endLatitude = default, decimal endLongitude = default, string? endPlaceId = default, int? seatCount = default)
-        {
-            ProductId = productId;
-            StartLatitude = startLatitude;
-            StartLongitude = startLongitude;
-            StartPlaceId = startPlaceId;
-            EndLatitude = endLatitude;
-            EndLongitude = endLongitude;
-            EndPlaceId = endPlaceId;
-            SeatCount = seatCount;
-        }
-
-        [JsonConstructor]
-        public RequestEstimate(decimal startLatitude = default, decimal startLongitude = default, decimal endLatitude = default, decimal endLongitude = default)
-        {
-            StartLatitude = startLatitude;
-            StartLongitude = startLongitude;
-            EndLatitude = endLatitude;
-            EndLongitude = endLongitude;
-        }
+        [JsonConstructorAttribute]
+        public RequestEstimate() { }
 
         [DataMember(Name = "product_id", EmitDefaultValue = false)]
         public string? ProductId { get; set; }
@@ -73,7 +54,7 @@ namespace UberAPI.Models
 
         public virtual string ToJson()
         {
-            return JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
+            return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
 
         public override bool Equals(object? input)
