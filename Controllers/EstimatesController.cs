@@ -23,6 +23,10 @@ namespace UberAPI.Controllers
         [Route("/estimates/price")]
         public IActionResult GetPriceEstimates([FromQuery][Required()]double? startLatitude, [FromQuery][Required()]double? startLongitude, [FromQuery][Required()]double? endLatitude, [FromQuery][Required()]double? endLongitude)
         {
+            _logger.LogInformation("[UberAPI:EstimatesController:GetPriceEstimates] Controller endpoint invoked..");
+            _logger.LogInformation($"[UberAPI:EstimatesController:GetPriceEstimates] Data Received: Start Long & Lat: {startLongitude}-{startLatitude}");
+            _logger.LogInformation($"[UberAPI:EstimatesController:GetPriceEstimates] Data Received: End Long & Lat: {endLongitude}-{endLatitude}");
+
             var startLocation = new LatLng() { Lat = startLatitude, Lng = startLongitude };
             var endLocation = new LatLng() {Lat = startLatitude, Lng = startLongitude };
 
@@ -33,6 +37,11 @@ namespace UberAPI.Controllers
         [Route("/estimates/time")]
         public IActionResult GetTimeEstimates([FromQuery][Required()]double? startLatitude, [FromQuery][Required()]double? startLongitude, [FromQuery]string productId)
         {
+            _logger.LogInformation("[UberAPI:EstimatesController:GetTimeEstimates] Controller endpoint invoked..");
+            _logger.LogInformation($"[UberAPI:EstimatesController:GetTimeEstimates] Data Received: Start Long & Lat: {startLongitude}-{startLatitude}");
+            _logger.LogInformation($"[UberAPI:EstimatesController:GetTimeEstimates] Data Received: Product ID : {productId}");
+
+
             var startLocation = new LatLng() { Lat = startLatitude, Lng = startLongitude };
             var endLocation = new LatLng() { Lat = startLatitude, Lng = startLongitude };
 

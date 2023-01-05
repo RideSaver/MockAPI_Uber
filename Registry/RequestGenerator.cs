@@ -59,7 +59,6 @@ namespace UberAPI.Registry
                 Destination = T_FAKER_CONFIG.Generate(),
                 Waypoints = RW_FAKER_CONFIG.Generate(),
                 Riders = RR_FAKER_CONFIG.Generate(),
-
             };
 
             return request;
