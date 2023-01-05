@@ -57,7 +57,7 @@ namespace UberAPI.Registry
 
         public static EstimateWithoutSurge GenerateEstimateWithoutSurge() => FullEstimateWithout.Generate();
         public static EstimateWithSurge GenerateEstimateWithSurge() => FullEstimateWith.Generate();
-        public static RequestEstimateResponse GenerateEstimate(bool? surgeActive)
+        public static RequestEstimateResponse GenerateEstimate(bool? surgeActive = null)
         {
             bool _surgeActive = false;
 
