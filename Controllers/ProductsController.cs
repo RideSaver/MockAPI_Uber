@@ -31,12 +31,12 @@ namespace UberAPI.Controllers
         }
 
         [HttpGet]
-        [Route("/products/{product_id}")]
-        public IActionResult GetProduct([FromRoute] string productId)
+        [Route("/products/{productId}")]
+        public IActionResult GetProduct([FromRoute] string? productId)
         {
             _logger.LogInformation("[UberAPI:ProductsController:GetProduct] Controller endpoint invoked..");
             _logger.LogInformation($"[UberAPI:ProductsController:GetProduct] Data Received: Product ID: {productId}");
-            if (requestBody is null) return BadRequest("Error: Invalid data receieved (null)");
+            if (productId is null) return BadRequest("Error: Invalid data receieved (null)");
 
             return new OkObjectResult(_productsRepository.GetProduct(productId));
         }
