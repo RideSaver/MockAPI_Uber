@@ -33,7 +33,7 @@ namespace UberAPI.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="EstimateWithoutSurgeFareBreakdownInner" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
+        [JsonConstructor]
         protected EstimateWithoutSurgeFareBreakdownInner() { }
         /// <summary>
         /// Initializes a new instance of the <see cref="EstimateWithoutSurgeFareBreakdownInner" /> class.

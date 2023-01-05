@@ -1,12 +1,14 @@
 ﻿using System.Runtime.Serialization;
 using System.Text;
 using System.ComponentModel.DataAnnotations;
+using Newtonsoft.Json;
 
 namespace UberAPI.Models
 {
     [DataContract(Name = "RequestEstimate")]
     public class RequestEstimate : IEquatable<RequestEstimate>, IValidatableObject
     {
+        [JsonConstructor]
         public RequestEstimate(string? productId = default, decimal? startLatitude = default, decimal? startLongitude = default, string? startPlaceId = default, decimal endLatitude = default, decimal endLongitude = default, string? endPlaceId = default, int? seatCount = default)
         {
             ProductId = productId;
@@ -18,6 +20,8 @@ namespace UberAPI.Models
             EndPlaceId = endPlaceId;
             SeatCount = seatCount;
         }
+
+        [JsonConstructor]
         public RequestEstimate(decimal startLatitude = default, decimal startLongitude = default, decimal endLatitude = default, decimal endLongitude = default)
         {
             StartLatitude = startLatitude;
@@ -35,7 +39,7 @@ namespace UberAPI.Models
         [DataMember(Name = "start_longitude", EmitDefaultValue = false)]
         public decimal? StartLongitude { get; set; }
 
-        [DataMember(Name = "start_place_id", EmitDefaultValue = false)]
+        [DataMember(Name = "start_place_id", IsRequired = false, EmitDefaultValue = false)]
         public string? StartPlaceId { get; set; }
 
         [DataMember(Name = "end_latitude", EmitDefaultValue = false)]
@@ -44,10 +48,10 @@ namespace UberAPI.Models
         [DataMember(Name = "end_longitude", EmitDefaultValue = false)]
         public decimal? EndLongitude { get; set; }
 
-        [DataMember(Name = "end_place_id", EmitDefaultValue = false)]
+        [DataMember(Name = "end_place_id", IsRequired = false, EmitDefaultValue = false)]
         public string? EndPlaceId { get; set; }
 
-        [DataMember(Name = "seat_count", EmitDefaultValue = false)]
+        [DataMember(Name = "seat_count", IsRequired = false, EmitDefaultValue = false)]
         public int? SeatCount { get; set; }
 
 
@@ -69,7 +73,7 @@ namespace UberAPI.Models
 
         public virtual string ToJson()
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
+            return JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
         }
 
         public override bool Equals(object? input)

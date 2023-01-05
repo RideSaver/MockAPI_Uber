@@ -80,7 +80,7 @@ namespace UberAPI.Models
 
         public override string ToJson()
         {
-            return JsonConvert.SerializeObject(ActualInstance, RequestEstimateResponse.SerializerSettings);
+            return JsonConvert.SerializeObject(ActualInstance, SerializerSettings);
         }
 
         /// <summary>
