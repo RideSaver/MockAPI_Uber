@@ -57,11 +57,7 @@ namespace UberAPI.Controllers
 
             var estimate = await _requestsRepository.PostRequestEstimate(requestEstimate.ProductId!);
 
-
-            if (estimate.ActualInstance is EstimateWithSurge) { return new OkObjectResult(estimate.GetEstimateWithSurge()); }
-            if (estimate.ActualInstance is EstimateWithoutSurge) {  return new OkObjectResult(estimate.GetEstimateWithoutSurge()); }
-
-            return BadRequest("Error: Failed to return Estimate Data");
+            return Content(estimate.ToJson(), "application/json");
         }
 
         [HttpPost]
