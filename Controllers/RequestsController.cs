@@ -57,7 +57,7 @@ namespace UberAPI.Controllers
 
             var estimate = await _requestsRepository.PostRequestEstimate(requestEstimate.ProductId!);
 
-            return new OkObjectResult(estimate);
+            return new OkObjectResult(estimate.ActualInstance);
         }
 
         [HttpPost]
