@@ -54,9 +54,9 @@ namespace UberAPI.Models
         /// the InvalidClassException will be thrown
         /// </summary>
         /// <returns>An instance of EstimateWithSurge</returns>
-        public EstimateWithSurge GetEstimateWithSurge()
+        public EstimateWithSurge? GetEstimateWithSurge()
         {
-            return (EstimateWithSurge)ActualInstance;
+            return ActualInstance as EstimateWithSurge;
         }
 
         /// <summary>
@@ -64,9 +64,9 @@ namespace UberAPI.Models
         /// the InvalidClassException will be thrown
         /// </summary>
         /// <returns>An instance of EstimateWithoutSurge</returns>
-        public EstimateWithoutSurge GetEstimateWithoutSurge()
+        public EstimateWithoutSurge? GetEstimateWithoutSurge()
         {
-            return (EstimateWithoutSurge)ActualInstance;
+            return ActualInstance as EstimateWithoutSurge;
         }
 
         public override string ToString()

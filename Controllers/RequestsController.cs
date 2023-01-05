@@ -34,8 +34,6 @@ namespace UberAPI.Controllers
         [Route("/requests/estimate")]
         [Consumes("application/json")]
         [Produces("application/json")]
-        [ProducesResponseType(typeof(EstimateWithSurge), 200)]
-        [ProducesResponseType(typeof(EstimateWithoutSurge), 200)]
         public async Task<IActionResult> PostRequestEstimate([FromBody] RequestEstimate requestBody)
         {
             if (requestBody is null) return BadRequest("Error: Invalid data receieved (null)");
@@ -60,9 +58,8 @@ namespace UberAPI.Controllers
             var estimate = await _requestsRepository.PostRequestEstimate(requestEstimate.ProductId!);
 
 
-            if (estimate.ActualInstance.GetType() == typeof(EstimateWithSurge) { return new OkObjectResult(estimate.GetEstimateWithSurge()); }
-
-            if (estimate.ActualInstance.GetType() == typeof(EstimateWithoutSurge) {  return new OkObjectResult(estimate.GetEstimateWithoutSurge()); }
+            if (estimate.ActualInstance is EstimateWithSurge) { return new OkObjectResult(estimate.GetEstimateWithSurge()); }
+            if (estimate.ActualInstance is EstimateWithoutSurge) {  return new OkObjectResult(estimate.GetEstimateWithoutSurge()); }
 
             return BadRequest("Error: Failed to return Estimate Data");
         }
