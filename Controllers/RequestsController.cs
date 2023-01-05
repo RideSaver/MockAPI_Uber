@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
+using UberAPI.Helper;
 using UberAPI.Interface;
 using UberAPI.Models;
 
@@ -32,9 +33,8 @@ namespace UberAPI.Controllers
 
         [HttpPost]
         [Route("/requests/estimate")]
-        [Consumes("application/json")]
         [Produces("application/json")]
-        public async Task<IHttpActionResult> PostRequestEstimate([FromBody] RequestEstimate requestBody)
+        public async Task<ActionResult<RequestEstimateResponse>> PostRequestEstimate([FromBody] RequestEstimate requestBody)
         {
             if (requestBody is null) return BadRequest("Error: Invalid data receieved (null)");
 
@@ -57,7 +57,7 @@ namespace UberAPI.Controllers
 
             var estimate = await _requestsRepository.PostRequestEstimate(requestEstimate.ProductId!);
 
-            return Content(new StringContent(estimate.ToJson()), "application/json");
+            return new OkObjectResult(estimate);
         }
 
         [HttpPost]
