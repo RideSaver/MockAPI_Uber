@@ -33,7 +33,12 @@ app.UseForwardedHeaders(new ForwardedHeadersOptions
     ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
 });
 
+app.UseExceptionHandler(new ExceptionHandlerOptions() { AllowStatusCode404Response = true, ExceptionHandlingPath = "/error" });
+
 app.UseHttpsRedirection();
 app.MapControllers();
 app.MapHealthChecks("/healthz");
+
+app.Logger.LogInformation("[UberAPI] Finished middleware configuration.. starting the MockAPI...");
+
 app.Run();

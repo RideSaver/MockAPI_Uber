@@ -32,7 +32,7 @@ namespace UberAPI.Controllers
 
         [HttpGet]
         [Route("/products/{product_id}")]
-        public IActionResult GetProduct([FromRoute][Required]string productId)
+        public IActionResult GetProduct([FromRoute][Required] string productId)
         {
             _logger.LogInformation("[UberAPI:ProductsController:GetProduct] Controller endpoint invoked..");
             _logger.LogInformation($"[UberAPI:ProductsController:GetProduct] Data Received: Product ID: {productId}");

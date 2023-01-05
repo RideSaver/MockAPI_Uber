@@ -20,6 +20,8 @@ namespace UberAPI.Controllers
 
         [HttpGet]
         [Route("/requests/{request_id}")]
+        [Consumes("application/json")]
+        [Produces("application/json")]
         public IActionResult GetRequest([FromRoute][Required] string requestId)
         {
             _logger.LogInformation("[UberAPI:RequestsController:GetRequest] Controller endpoint invoked..");
@@ -30,19 +32,20 @@ namespace UberAPI.Controllers
 
         [HttpPost]
         [Route("/requests/estimate")]
-        public IActionResult PostRequestEstimate([FromBody] string productId, double startLat, double startLong, string? startPlaceId,
-            double endLat, double endLong, string? endPlaceId, int? seats)
+        [Consumes("application/json")]
+        [Produces("application/json")]
+        public IActionResult PostRequestEstimate([FromBody] RequestEstimate requestBody)
         {
             _logger.LogInformation("[UberAPI:RequestsController:PostRequestEstimate] Controller endpoint invoked..");
-            _logger.LogInformation($"[UberAPI:RequestsController:PostRequestEstimate] Data Received: Product ID: {productId}");
-            _logger.LogInformation($"[UberAPI:RequestsController:PostRequestEstimate] Data Received: Start long & lat: {startLong}-{startLat}");
-            _logger.LogInformation($"[UberAPI:RequestsController:PostRequestEstimate] Data Received: End long & lat: {endLong}-{endLat}");
+            _logger.LogInformation($"[UberAPI:RequestsController:PostRequestEstimate] Data Received: Product ID: {requestBody.ProductId}");
+            _logger.LogInformation($"[UberAPI:RequestsController:PostRequestEstimate] Data Received: Start long & lat: {requestBody.StartLong}-{requestBody.StartLat}");
+            _logger.LogInformation($"[UberAPI:RequestsController:PostRequestEstimate] Data Received: End long & lat: {requestBody.EndLong}-{requestBody.EndLat}");
 
-            return new OkObjectResult(_requestsRepository.PostRequestEstimate(productId));
+            return new OkObjectResult(_requestsRepository.PostRequestEstimate(requestBody.ProductId));
         }
 
         [HttpPost]
-        [Route("request")]
+        [Route("/requests/request")]
         public IActionResult PostRequest([FromBody] Requests requestInfo) => new NoContentResult();
 
         [HttpDelete]
