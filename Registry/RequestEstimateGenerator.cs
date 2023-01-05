@@ -6,7 +6,7 @@ namespace UberAPI.Registry
 {
     public static class RequestEstimateGenerator
     {
-        public static Faker<EstimateWitoutSurgeFareBreakdown> WO_SurgeFareBreakdown_FAKER_CONFG = new AutoFaker<RequestIdDrivers>()
+        public static Faker<RequestIdDrivers> RD_FAKER_CONFIG = new AutoFaker<RequestIdDrivers>()
             .RuleFor(o => o.PhoneNumber, f => f.Phone.PhoneNumber())
             .RuleFor(o => o.SmsNumber, f => f.Phone.PhoneNumber())
             .RuleFor(o => o.Rating, f => f.Random.Int(5, 25))
@@ -52,7 +52,7 @@ namespace UberAPI.Registry
                 Status = "Arriving Shortly",
                 SurgeMultiplier = 0,
                 Shared = false,
-                Drivers = RD_FAKER_CONFG.Generate(),
+                Drivers = RD_FAKER_CONFIG.Generate(),
                 Vehicle = RV_FAKER_CONFIG.Generate(),
                 Location = RL_FAKER_CONFIG.Generate(),
                 Pickup = T_FAKER_CONFIG.Generate(3),

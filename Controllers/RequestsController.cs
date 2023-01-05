@@ -26,21 +26,21 @@ namespace UberAPI.Controllers
         }
 
         [HttpDelete]
-        [Route("/request/{request_id}")]
+        [Route("/requests/{request_id}")]
         public IActionResult DeleteRequest([FromRoute][Required]string requestId)
         {
             return new NoContentResult();
         }
 
         [HttpGet]
-        [Route("/request/{request_id}")]
+        [Route("/requests/{request_id}")]
         public IActionResult GetRequest([FromRoute][Required]string requestId)
         {
             return new OkObjectResult(_requestsRepository.GetRequest(requestId));
         }
 
         [HttpPatch]
-        [Route("/request/{request_id}")]
+        [Route("/requests/{request_id}")]
         public IActionResult PatchRequest([FromRoute][Required]string requestId)
         {
             return new NoContentResult();
