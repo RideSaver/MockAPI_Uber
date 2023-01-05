@@ -22,7 +22,7 @@ namespace UberAPI.Registry
         private static Faker<EstimateWithoutSurgeFare> FareWithout = new AutoFaker<EstimateWithoutSurgeFare>()
             .RuleFor(o => o.Value, f => f.Random.Decimal(5, 30))
             .RuleFor(o => o.FareId, () => new Guid().ToString())
-            .RuleFor(o => o.ExpiresAt, f => Int32.Parse(f.Date.Soon().ToString()))
+            .RuleFor(o => o.ExpiresAt, f => 10)
             .RuleFor(o => o.Display, (f, est) => $"${est.Value.ToString("0.00")}")
             .RuleFor(o => o.CurrencyCode, f => "USD")
             .RuleFor(o => o.Breakdown, f => FareBreakdownWithout.Generate(f.Random.Number(1, 3)).ToList());
@@ -45,13 +45,13 @@ namespace UberAPI.Registry
             .RuleFor(o => o.CurrencyCode, f => "USD");
 
         private static Faker<EstimateWithoutSurge> FullEstimateWithout = new AutoFaker<EstimateWithoutSurge>()
-            .RuleFor(o => o.Fare, f => FareWithout.Generate())
-            .RuleFor(o => o.Trip, f => Trip.Generate())
+            .RuleFor(o => o.Fare, () => FareWithout.Generate())
+            .RuleFor(o => o.Trip, () => Trip.Generate())
             .RuleFor(o => o.PickupEstimate, f => f.Random.Number(10, 30));
 
         private static Faker<EstimateWithSurge> FullEstimateWith = new AutoFaker<EstimateWithSurge>()
-            .RuleFor(o => o.Estimate, f => EstimateWith.Generate())
-            .RuleFor(o => o.Trip, f => Trip.Generate())
+            .RuleFor(o => o.Estimate, () => EstimateWith.Generate())
+            .RuleFor(o => o.Trip, () => Trip.Generate())
             .RuleFor(o => o.PickupEstimate, f => f.Random.Number(10, 30));
 
 

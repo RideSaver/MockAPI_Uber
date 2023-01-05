@@ -36,12 +36,26 @@ namespace UberAPI.Controllers
         [Produces("application/json")]
         public IActionResult PostRequestEstimate([FromBody] RequestEstimate requestBody)
         {
-            _logger.LogInformation("[UberAPI:RequestsController:PostRequestEstimate] Controller endpoint invoked..");
-            _logger.LogInformation($"[UberAPI:RequestsController:PostRequestEstimate] Data Received: Product ID: {requestBody.ProductId}");
-            _logger.LogInformation($"[UberAPI:RequestsController:PostRequestEstimate] Data Received: Start long & lat: {requestBody.StartLongitude}-{requestBody.StartLatitude}");
-            _logger.LogInformation($"[UberAPI:RequestsController:PostRequestEstimate] Data Received: End long & lat: {requestBody.EndLongitude}-{requestBody.EndLatitude}");
+            if (requestBody is null) return BadRequest("Error: Invalid data receieved (null)");
 
-            return new OkObjectResult(_requestsRepository.PostRequestEstimate(requestBody.ProductId));
+            var requestEstimate = new RequestEstimate()
+            {
+                ProductId = requestBody.ProductId,
+                StartLatitude= requestBody.StartLatitude,
+                StartLongitude= requestBody.StartLongitude,
+                StartPlaceId= requestBody.StartPlaceId,
+                EndLatitude= requestBody.EndLatitude,
+                EndLongitude= requestBody.EndLongitude,
+                EndPlaceId= requestBody.EndPlaceId,
+                SeatCount= requestBody.SeatCount,
+            };
+
+            _logger.LogInformation("[UberAPI:RequestsController:PostRequestEstimate] Controller endpoint invoked..");
+            _logger.LogInformation($"[UberAPI:RequestsController:PostRequestEstimate] Data Received: Product ID: {requestEstimate.ProductId}");
+            _logger.LogInformation($"[UberAPI:RequestsController:PostRequestEstimate] Data Received: Start long & lat: {requestEstimate.StartLongitude}-{requestEstimate.StartLatitude}");
+            _logger.LogInformation($"[UberAPI:RequestsController:PostRequestEstimate] Data Received: End long & lat: {requestEstimate.EndLongitude}-{requestEstimate.EndLatitude}");
+
+            return new OkObjectResult(_requestsRepository.PostRequestEstimate(requestEstimate.ProductId!));
         }
 
         [HttpPost]

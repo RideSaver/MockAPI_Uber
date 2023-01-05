@@ -11,6 +11,24 @@ namespace UberAPI.Models
         [JsonConstructorAttribute]
         public RequestEstimate() { }
 
+        [JsonConstructorAttribute]
+        public RequestEstimate(string productId = default!, decimal startLatitutde = default, decimal startLongitude = default, string? startPlaceId = default, decimal endLatitude = default, decimal endLongitude = default, string? endPlaceId = default, int? seatCount = default)
+        {
+            if (string.IsNullOrEmpty(productId))
+            {
+                throw new ArgumentException("'ProductID cannot be null or empty.");
+            }
+
+            ProductId = productId;
+            StartLongitude = startLongitude;
+            StartLatitude = startLatitutde;
+            StartPlaceId = startPlaceId;
+            EndLatitude = endLatitude;
+            EndLongitude = endLongitude;
+            EndPlaceId= endPlaceId;
+            SeatCount= seatCount;
+        } 
+
         [DataMember(Name = "product_id", EmitDefaultValue = false)]
         public string? ProductId { get; set; }
 
