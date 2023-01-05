@@ -34,7 +34,8 @@ namespace UberAPI.Controllers
         [Route("/requests/estimate")]
         [Consumes("application/json")]
         [Produces("application/json")]
-        [ProducesResponseType(typeof(RequestEstimateResponse), 200)]
+        [ProducesResponseType(typeof(EstimateWithSurge), 200)]
+        [ProducesResponseType(typeof(EstimateWithoutSurge), 200)]
 
         public async Task<IActionResult> PostRequestEstimate([FromBody] RequestEstimate requestBody)
         {
@@ -57,7 +58,16 @@ namespace UberAPI.Controllers
             _logger.LogInformation($"[UberAPI:RequestsController:PostRequestEstimate] Data Received: Start long & lat: {requestEstimate.StartLongitude}-{requestEstimate.StartLatitude}");
             _logger.LogInformation($"[UberAPI:RequestsController:PostRequestEstimate] Data Received: End long & lat: {requestEstimate.EndLongitude}-{requestEstimate.EndLatitude}");
 
-            return new OkObjectResult(await _requestsRepository.PostRequestEstimate(requestEstimate.ProductId!));
+            var estimate = await _requestsRepository.PostRequestEstimate(requestEstimate.ProductId!);
+            if (estimate.GetType() == typeof(EstimateWithSurge))
+            {
+                return new OkObjectResult(estimate.GetEstimateWithSurge());
+            }
+            else if (estimate.GetType() == typeof(EstimateWithoutSurge))
+            {
+                return new OkObjectResult(estimate.GetEstimateWithoutSurge());
+            }
+            return new NoContentResult();
         }
 
         [HttpPost]
