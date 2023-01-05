@@ -55,37 +55,23 @@ namespace UberAPI.Registry
             .RuleFor(o => o.PickupEstimate, f => f.Random.Number(10, 30));
 
 
-        public static EstimateWithoutSurge GenerateEstimateWithoutSurge()
-        {
-            return FullEstimateWithout.Generate();
-        }
-
-        public static EstimateWithSurge GenerateEstimateWithSurge()
-        {
-            return FullEstimateWith.Generate();
-        }
-
+        public static EstimateWithoutSurge GenerateEstimateWithoutSurge() => FullEstimateWithout.Generate();
+        public static EstimateWithSurge GenerateEstimateWithSurge() => FullEstimateWith.Generate();
         public static RequestEstimateResponse GenerateEstimate(bool? surgeActive)
         {
             bool _surgeActive = false;
-            if(surgeActive == null)
-            {
+
+            if(surgeActive is null) 
+            { 
                 var random = new Bogus.Randomizer();
                 _surgeActive = random.Bool();
             }
-            else
-            {
-                _surgeActive = (bool)surgeActive;
-            }
 
-            if(_surgeActive)
-            {// Return surge pricing
-                return new RequestEstimateResponse(GenerateEstimateWithSurge());
-            }
-            else
-            {// Return upfront fare pricing
-                return new RequestEstimateResponse(GenerateEstimateWithoutSurge());
-            }
+            else { _surgeActive = (bool)surgeActive; }
+
+
+            if(_surgeActive) {  return new RequestEstimateResponse(GenerateEstimateWithSurge()); } // Return surge pricing
+            else { return new RequestEstimateResponse(GenerateEstimateWithoutSurge()); } // Return upfront fare pricing
         }
     }
 }

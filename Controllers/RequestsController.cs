@@ -18,32 +18,25 @@ namespace UberAPI.Controllers
             _logger = logger;
         }
 
+        [HttpGet]
+        [Route("/requests/{request_id}")]
+        public IActionResult GetRequest([FromRoute][Required] string requestId) => new OkObjectResult(_requestsRepository.GetRequest(requestId));
+
+        [HttpPost]
+        [Route("/requests/estimate")]
+        public IActionResult PostRequestEstimate([FromBody] string productId, double startLat, double startLong, string? startPlaceId,
+            double endLat, double endLong, string? endPlaceId, int? seats) => new OkObjectResult(_requestsRepository.PostRequestEstimateWOSurge(productId));
+
         [HttpPost]
         [Route("request")]
-        public IActionResult PostRequest([FromBody]Requests body)
-        {
-            return new NoContentResult();
-        }
+        public IActionResult PostRequest([FromBody] Requests requestInfo) => new NoContentResult();
 
         [HttpDelete]
         [Route("/requests/{request_id}")]
-        public IActionResult DeleteRequest([FromRoute][Required]string requestId)
-        {
-            return new NoContentResult();
-        }
-
-        [HttpGet]
-        [Route("/requests/{request_id}")]
-        public IActionResult GetRequest([FromRoute][Required]string requestId)
-        {
-            return new OkObjectResult(_requestsRepository.GetRequest(requestId));
-        }
+        public IActionResult DeleteRequest([FromRoute][Required] string requestId) => new NoContentResult();
 
         [HttpPatch]
         [Route("/requests/{request_id}")]
-        public IActionResult PatchRequest([FromRoute][Required]string requestId)
-        {
-            return new NoContentResult();
-        }
+        public IActionResult PatchRequest([FromRoute][Required] string requestId) => new NoContentResult();
     }
 }

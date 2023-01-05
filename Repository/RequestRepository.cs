@@ -6,25 +6,10 @@ namespace UberAPI.Repository
 {
     public class RequestRepository : IRequestRepository
     {
-        public void DeleteRequest(string requestId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public RequestId GetRequest(string requestId)
-        {
-            RequestId request = RequestGenerator.GenerateRequest();
-            return request; 
-        }
-
-        public void PatchRequest(string requestId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void PostRequest(Requests body)
-        {
-            throw new NotImplementedException();
-        }
+        public RequestId GetRequest(string requestId) => RequestGenerator.GenerateRequest();
+        public EstimateWithoutSurge PostRequestEstimateWOSurge(string requestId) => EstimateGenerator.GenerateEstimateWithoutSurge();
+        public void DeleteRequest(string requestId) => throw new NotImplementedException();
+        public void PatchRequest(string requestId) => throw new NotImplementedException();
+        public void PostRequest(Requests body) => throw new NotImplementedException();
     }
 }

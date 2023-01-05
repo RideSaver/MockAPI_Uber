@@ -8,5 +8,6 @@ namespace UberAPI.Interface
         void DeleteRequest(string requestId);
         RequestId GetRequest(string requestId);
         void PatchRequest(string requestId);
+        EstimateWithoutSurge PostRequestEstimateWOSurge(string requestId);
     }
 }
