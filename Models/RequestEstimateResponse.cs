@@ -3,27 +3,30 @@ using System.Text;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using UberAPI.Helper;
 
 namespace UberAPI.Models
 {
     [JsonConverter(typeof(RequestEstimateResponseJsonConverter))]
     [DataContract(Name = "RequestEstimateResponse")]
-    public partial class RequestEstimateResponse : IEquatable<RequestEstimateResponse>, IValidatableObject
+    public class RequestEstimateResponse : ModelValidation, IEquatable<RequestEstimateResponse>, IValidatableObject
     {
         public RequestEstimateResponse(EstimateWithSurge actualInstance)
         {
-            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
+            IsNullable = false;
+            SchemaType = "oneOf";
+            ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
         }
 
         public RequestEstimateResponse(EstimateWithoutSurge actualInstance)
         {
-            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
+            IsNullable = false;
+            SchemaType = "oneOf";
+            ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
         }
 
-
-        private Object _actualInstance;
-
-        public Object ActualInstance
+        private object _actualInstance;
+        public override object ActualInstance
         {
             get
             {
@@ -33,11 +36,11 @@ namespace UberAPI.Models
             {
                 if (value.GetType() == typeof(EstimateWithSurge))
                 {
-                    this._actualInstance = value;
+                    _actualInstance = value;
                 }
                 else if (value.GetType() == typeof(EstimateWithoutSurge))
                 {
-                    this._actualInstance = value;
+                    _actualInstance = value;
                 }
                 else
                 {
@@ -46,25 +49,45 @@ namespace UberAPI.Models
             }
         }
 
+        /// <summary>
+        /// Get the actual instance of `EstimateWithSurge`. If the actual instance is not `EstimateWithSurge`,
+        /// the InvalidClassException will be thrown
+        /// </summary>
+        /// <returns>An instance of EstimateWithSurge</returns>
         public EstimateWithSurge GetEstimateWithSurge()
         {
-            return (EstimateWithSurge)this.ActualInstance;
+            return (EstimateWithSurge)ActualInstance;
         }
 
+        /// <summary>
+        /// Get the actual instance of `EstimateWithoutSurge`. If the actual instance is not `EstimateWithoutSurge`,
+        /// the InvalidClassException will be thrown
+        /// </summary>
+        /// <returns>An instance of EstimateWithoutSurge</returns>
         public EstimateWithoutSurge GetEstimateWithoutSurge()
         {
-            return (EstimateWithoutSurge)this.ActualInstance;
+            return (EstimateWithoutSurge)ActualInstance;
         }
 
         public override string ToString()
         {
             var sb = new StringBuilder();
             sb.Append("class RequestEstimateResponse {\n");
-            sb.Append("  ActualInstance: ").Append(this.ActualInstance).Append("\n");
+            sb.Append("  ActualInstance: ").Append(ActualInstance).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
 
+        public override string ToJson()
+        {
+            return JsonConvert.SerializeObject(ActualInstance, RequestEstimateResponse.SerializerSettings);
+        }
+
+        /// <summary>
+        /// Converts the JSON string into an instance of RequestEstimateResponse
+        /// </summary>
+        /// <param name="jsonString">JSON string</param>
+        /// <returns>An instance of RequestEstimateResponse</returns>
         public static RequestEstimateResponse FromJson(string jsonString)
         {
             RequestEstimateResponse newRequestEstimateResponse = null;
@@ -81,11 +104,11 @@ namespace UberAPI.Models
                 // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
                 if (typeof(EstimateWithSurge).GetProperty("AdditionalProperties") == null)
                 {
-                    newRequestEstimateResponse = new RequestEstimateResponse(JsonConvert.DeserializeObject<EstimateWithSurge>(jsonString));
+                    newRequestEstimateResponse = new RequestEstimateResponse(JsonConvert.DeserializeObject<EstimateWithSurge>(jsonString, RequestEstimateResponse.SerializerSettings));
                 }
                 else
                 {
-                    newRequestEstimateResponse = new RequestEstimateResponse(JsonConvert.DeserializeObject<EstimateWithSurge>(jsonString));
+                    newRequestEstimateResponse = new RequestEstimateResponse(JsonConvert.DeserializeObject<EstimateWithSurge>(jsonString, RequestEstimateResponse.AdditionalPropertiesSerializerSettings));
                 }
                 matchedTypes.Add("EstimateWithSurge");
                 match++;
@@ -101,11 +124,11 @@ namespace UberAPI.Models
                 // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
                 if (typeof(EstimateWithoutSurge).GetProperty("AdditionalProperties") == null)
                 {
-                    newRequestEstimateResponse = new RequestEstimateResponse(JsonConvert.DeserializeObject<EstimateWithoutSurge>(jsonString));
+                    newRequestEstimateResponse = new RequestEstimateResponse(JsonConvert.DeserializeObject<EstimateWithoutSurge>(jsonString, RequestEstimateResponse.SerializerSettings));
                 }
                 else
                 {
-                    newRequestEstimateResponse = new RequestEstimateResponse(JsonConvert.DeserializeObject<EstimateWithoutSurge>(jsonString));
+                    newRequestEstimateResponse = new RequestEstimateResponse(JsonConvert.DeserializeObject<EstimateWithoutSurge>(jsonString, RequestEstimateResponse.AdditionalPropertiesSerializerSettings));
                 }
                 matchedTypes.Add("EstimateWithoutSurge");
                 match++;
@@ -131,7 +154,7 @@ namespace UberAPI.Models
 
         public override bool Equals(object input)
         {
-            return this.Equals(input as RequestEstimateResponse);
+            return Equals(input as RequestEstimateResponse);
         }
 
         public bool Equals(RequestEstimateResponse input)
@@ -139,7 +162,7 @@ namespace UberAPI.Models
             if (input == null)
                 return false;
 
-            return this.ActualInstance.Equals(input.ActualInstance);
+            return ActualInstance.Equals(input.ActualInstance);
         }
 
         public override int GetHashCode()
@@ -159,23 +182,44 @@ namespace UberAPI.Models
         }
     }
 
+    /// <summary>
+    /// Custom JSON converter for RequestEstimateResponse
+    /// </summary>
     public class RequestEstimateResponseJsonConverter : JsonConverter
     {
-
+        /// <summary>
+        /// To write the JSON string
+        /// </summary>
+        /// <param name="writer">JSON writer</param>
+        /// <param name="value">Object to be converted into a JSON string</param>
+        /// <param name="serializer">JSON Serializer</param>
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
             writer.WriteRawValue((string)(typeof(RequestEstimateResponse).GetMethod("ToJson").Invoke(value, null)));
         }
 
+        /// <summary>
+        /// To convert a JSON string into an object
+        /// </summary>
+        /// <param name="reader">JSON reader</param>
+        /// <param name="objectType">Object type</param>
+        /// <param name="existingValue">Existing value</param>
+        /// <param name="serializer">JSON Serializer</param>
+        /// <returns>The object converted from the JSON string</returns>
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
-            if(reader.TokenType != JsonToken.Null)
+            if (reader.TokenType != JsonToken.Null)
             {
                 return RequestEstimateResponse.FromJson(JObject.Load(reader).ToString(Formatting.None));
             }
             return null;
         }
 
+        /// <summary>
+        /// Check if the object can be converted
+        /// </summary>
+        /// <param name="objectType">Object type</param>
+        /// <returns>True if the object can be converted</returns>
         public override bool CanConvert(Type objectType)
         {
             return false;
