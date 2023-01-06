@@ -13,7 +13,8 @@ namespace UberAPI.Registry
             .RuleFor(o => o.Minimum, () => 3.50f)
             .RuleFor(o => o.CostPerDistance, () => 2.00f)
             .RuleFor(o => o.CanellationFee, () => 5.00f)
-            .RuleFor(o => o.CurrencyCode, () => "USD");
+            .RuleFor(o => o.CurrencyCode, () => "USD")
+            .RuleFor(o => o.Base, f => f.Radom.Float(0, 3));
 
         public static Product GenerateProduct()
         {
