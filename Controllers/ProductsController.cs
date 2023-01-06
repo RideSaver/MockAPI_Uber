@@ -27,7 +27,7 @@ namespace UberAPI.Controllers
 
             var location = new LatLng() { Lat = latitude, Lng = longitude };
 
-            return new OkObjectResult(_productsRepository.GetProducts(location));
+            return Content(_productsRepository.GetProducts(location).ToJson(), "application/json");
         }
 
         [HttpGet]
@@ -38,7 +38,7 @@ namespace UberAPI.Controllers
             _logger.LogInformation($"[UberAPI:ProductsController:GetProduct] Data Received: Product ID: {productId}");
             if (productId is null) return BadRequest("Error: Invalid data receieved (null)");
 
-            return new OkObjectResult(_productsRepository.GetProduct(productId));
+            return Content(_productsRepository.GetProduct(productId).ToJson(), "application/json");
         }
     }
 }
