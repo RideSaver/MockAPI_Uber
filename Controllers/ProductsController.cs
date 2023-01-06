@@ -20,6 +20,7 @@ namespace UberAPI.Controllers
 
         [HttpGet]
         [Route("products")]
+        [Produces("application/json")]
         public IActionResult GetProducts([FromQuery][Required()]double? latitude, [FromQuery][Required()]double? longitude)
         {
             _logger.LogInformation("[UberAPI:ProductsController:GetProducts] Controller endpoint invoked..");
@@ -32,13 +33,15 @@ namespace UberAPI.Controllers
 
         [HttpGet]
         [Route("/products/{productId}")]
-        public IActionResult GetProduct([FromRoute] string? productId)
+        [Produces("application/json")]
+        public async Task<IActionResult> GetProduct([FromRoute] string? productId)
         {
             _logger.LogInformation("[UberAPI:ProductsController:GetProduct] Controller endpoint invoked..");
             _logger.LogInformation($"[UberAPI:ProductsController:GetProduct] Data Received: Product ID: {productId}");
+
             if (productId is null) return BadRequest("Error: Invalid data receieved (null)");
 
-            return new OkObjectResult(_productsRepository.GetProduct(productId));
+            return new OkObjectResult(await _productsRepository.GetProduct(productId));
         }
     }
 }
