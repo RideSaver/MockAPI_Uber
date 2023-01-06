@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
-using UberAPI.Helper;
+using UberAPI.Filters;
 using UberAPI.Interface;
 using UberAPI.Models;
 
@@ -34,6 +34,8 @@ namespace UberAPI.Controllers
         [HttpPost]
         [Route("/requests/estimate")]
         [Produces("application/json")]
+        [Consumes("application/json", new string[] { })]
+        [ValidateModelState]
         public async Task<ActionResult<RequestEstimateResponse>> PostRequestEstimate([FromBody] RequestEstimate requestBody)
         {
             if (requestBody is null) return BadRequest("Error: Invalid data receieved (null)");
@@ -60,16 +62,13 @@ namespace UberAPI.Controllers
             return Content(estimate.ToJson(), "application/json");
         }
 
-        [HttpPost]
-        [Route("/requests/request")]    
+        [HttpPost][Route("/requests/request")] 
         public IActionResult PostRequest([FromBody] Requests requestInfo) => new NoContentResult();
 
-        [HttpDelete]
-        [Route("/requests/{request_id}")]
+        [HttpDelete][Route("/requests/{request_id}")]
         public IActionResult DeleteRequest([FromRoute][Required] string requestId) => new NoContentResult();
 
-        [HttpPatch]
-        [Route("/requests/{request_id}")]
+        [HttpPatch][Route("/requests/{request_id}")]
         public IActionResult PatchRequest([FromRoute][Required] string requestId) => new NoContentResult();
     }
 }
