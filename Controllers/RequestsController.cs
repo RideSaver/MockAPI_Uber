@@ -36,28 +36,16 @@ namespace UberAPI.Controllers
         [Produces("application/json")]
         [Consumes("application/json", new string[] { })]
         [ValidateModelState]
-        public async Task<ActionResult<RequestEstimateResponse>> PostRequestEstimate([FromBody] RequestEstimate requestBody)
+        public async Task<ActionResult<RequestEstimateResponse>> PostRequestEstimate(RequestEstimate requestBody)
         {
             if (requestBody is null) return BadRequest("Error: Invalid data receieved (null)");
 
-            var requestEstimate = new RequestEstimate()
-            {
-                ProductId = requestBody.ProductId,
-                StartLatitude= requestBody.StartLatitude,
-                StartLongitude= requestBody.StartLongitude,
-                StartPlaceId= requestBody.StartPlaceId,
-                EndLatitude= requestBody.EndLatitude,
-                EndLongitude= requestBody.EndLongitude,
-                EndPlaceId= requestBody.EndPlaceId,
-                SeatCount= requestBody.SeatCount,
-            };
-
             _logger.LogInformation("[UberAPI:RequestsController:PostRequestEstimate] Controller endpoint invoked..");
-            _logger.LogInformation($"[UberAPI:RequestsController:PostRequestEstimate] Data Received: Product ID: {requestEstimate.ProductId}");
-            _logger.LogInformation($"[UberAPI:RequestsController:PostRequestEstimate] Data Received: Start long & lat: {requestEstimate.StartLongitude}-{requestEstimate.StartLatitude}");
-            _logger.LogInformation($"[UberAPI:RequestsController:PostRequestEstimate] Data Received: End long & lat: {requestEstimate.EndLongitude}-{requestEstimate.EndLatitude}");
+            _logger.LogInformation($"[UberAPI:RequestsController:PostRequestEstimate] Data Received: Product ID: {requestBody.ProductId}");
+            _logger.LogInformation($"[UberAPI:RequestsController:PostRequestEstimate] Data Received: Start long & lat: {requestBody.StartLongitude}-{requestBody.StartLatitude}");
+            _logger.LogInformation($"[UberAPI:RequestsController:PostRequestEstimate] Data Received: End long & lat: {requestBody.EndLongitude}-{requestBody.EndLatitude}");
 
-            var estimate = await _requestsRepository.PostRequestEstimate(requestEstimate.ProductId!);
+            var estimate = await _requestsRepository.PostRequestEstimate(requestBody.ProductId!);
 
             return Content(estimate.ToJson(), "application/json");
         }
