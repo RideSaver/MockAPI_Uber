@@ -41,7 +41,7 @@ namespace UberAPI.Controllers
 
             if (productId is null) return BadRequest("Error: Invalid data receieved (null)");
 
-            return Content(_productsRepository.GetProduct(productId).ToJson(), "application/json");
+            return Content((await _productsRepository.GetProduct(productId)).ToJson(), "application/json");
         }
     }
 }
