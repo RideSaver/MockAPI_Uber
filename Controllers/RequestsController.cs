@@ -35,7 +35,6 @@ namespace UberAPI.Controllers
         [Route("/requests/estimate")]
         [Produces("application/json")]
         [Consumes("application/json", new string[] { })]
-        [ValidateModelState]
         public async Task<ActionResult<RequestEstimateResponse>> PostRequestEstimate(RequestEstimate requestBody)
         {
             if (requestBody is null) return BadRequest("Error: Invalid data receieved (null)");

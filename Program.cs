@@ -11,6 +11,12 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddHealthChecks();
 
+builder.Services.AddControllers().AddJsonOptions(options =>
+{
+    options.JsonSerializerOptions.NumberHandling = System.Text.Json.Serialization.JsonNumberHandling.AllowReadingFromString;
+});
+
+
 builder.Services.AddTransient<IEstimateRepository, EstimateRepository>();
 builder.Services.AddTransient<IProductRepository, ProductRepository>();
 builder.Services.AddTransient<IRequestRepository, RequestRepository>();
@@ -35,9 +41,11 @@ app.UseForwardedHeaders(new ForwardedHeadersOptions
 
 app.UseExceptionHandler(new ExceptionHandlerOptions() { AllowStatusCode404Response = true, ExceptionHandlingPath = "/error" });
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
+
 app.MapControllers();
 app.MapHealthChecks("/healthz");
+app.UseRouting();
 
 app.Logger.LogInformation("[UberAPI] Finished middleware configuration.. starting the MockAPI...");
 
