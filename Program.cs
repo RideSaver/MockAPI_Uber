@@ -41,7 +41,7 @@ app.UseForwardedHeaders(new ForwardedHeadersOptions
 
 app.UseExceptionHandler(new ExceptionHandlerOptions() { AllowStatusCode404Response = true, ExceptionHandlingPath = "/error" });
 
-//app.UseHttpsRedirection();
+app.UseHttpsRedirection();
 
 app.MapControllers();
 app.MapHealthChecks("/healthz");

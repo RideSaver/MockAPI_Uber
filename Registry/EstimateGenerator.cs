@@ -36,12 +36,12 @@ namespace UberAPI.Registry
         private static Faker<EstimateWithSurgeEstimate> EstimateWith = new AutoFaker<EstimateWithSurgeEstimate>()
             .RuleFor(o => o.SurgeConfirmationId, () => new Guid().ToString())
             .RuleFor(o => o.SurgeConfirmationHref, (f, est) => $"/confirm/{est.SurgeConfirmationId}")
-            .RuleFor(o => o.LowEstimate, f => f.Random.Decimal(20, 50))
-            .RuleFor(o => o.HighEstimate, (f, est) => f.Random.Decimal(est.LowEstimate, 50))
+            .RuleFor(o => o.LowEstimate, f => f.Random.Number(20, 50))
+            .RuleFor(o => o.HighEstimate, (f, est) => f.Random.Number(est.LowEstimate, 50))
             .RuleFor(o => o.Display, (f, est) => $"${est.LowEstimate}-{est.HighEstimate}")
             .RuleFor(o => o.Minimum, f => f.Random.Number(10, 40))
             .RuleFor(o => o.FareBreakdown, f => FareBreakdownWith.Generate(5).ToList())
-            .RuleFor(o => o.SurgeMultiplier, f => f.Random.Decimal(1, 2))
+            .RuleFor(o => o.SurgeMultiplier, f => f.Random.Decimal(0.0m, 1.0m))
             .RuleFor(o => o.CurrencyCode, f => "USD");
 
         private static Faker<EstimateWithoutSurge> FullEstimateWithout = new AutoFaker<EstimateWithoutSurge>()
