@@ -23,7 +23,7 @@ using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
 using OpenAPIDateConverter = UberAPI.Client.Client.OpenAPIDateConverter;
 
-namespace UberAPI.Client.Model
+namespace UberAPI.Models
 {
     /// <summary>
     /// Product
