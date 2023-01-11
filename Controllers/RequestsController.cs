@@ -50,7 +50,7 @@ namespace UberAPI.Controllers
         }
 
         [HttpPost][Route("/request")] 
-        public IActionResult PostRequest([FromBody] Requests requestInfo) => new NoContentResult();
+        public IActionResult PostRequest([FromBody] CreateRequests requestInfo) => new NoContentResult();
 
         [HttpDelete][Route("/request/{request_id}")]
         public IActionResult DeleteRequest([FromRoute][Required] string requestId) => new NoContentResult();
