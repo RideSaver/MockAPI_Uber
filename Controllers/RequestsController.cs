@@ -20,7 +20,7 @@ namespace UberAPI.Controllers
         }
 
         [HttpGet]
-        [Route("/requests/{request_id}")]
+        [Route("/request/{request_id}")]
         [Consumes("application/json")]
         [Produces("application/json")]
         public IActionResult GetRequest([FromRoute][Required] string requestId)
@@ -49,13 +49,13 @@ namespace UberAPI.Controllers
             return Content(estimate.ToJson(), "application/json");
         }
 
-        [HttpPost][Route("/requests/request")] 
+        [HttpPost][Route("/request")] 
         public IActionResult PostRequest([FromBody] Requests requestInfo) => new NoContentResult();
 
-        [HttpDelete][Route("/requests/{request_id}")]
+        [HttpDelete][Route("/request/{request_id}")]
         public IActionResult DeleteRequest([FromRoute][Required] string requestId) => new NoContentResult();
 
-        [HttpPatch][Route("/requests/{request_id}")]
+        [HttpPatch][Route("/request/{request_id}")]
         public IActionResult PatchRequest([FromRoute][Required] string requestId) => new NoContentResult();
     }
 }
