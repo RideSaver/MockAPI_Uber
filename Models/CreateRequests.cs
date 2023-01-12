@@ -11,41 +11,41 @@ namespace UberAPI.Models
         public CreateRequests() { }
 
         [JsonConstructor]
-        public CreateRequests(string fare_id, string product_id, float start_latitude, float end_latitude, float start_longitude, float end_longitude, string surge_confirmation_id, string payment_method_id, int seats = 4)
+        public CreateRequests(string fareId, string productId, float startLatitude, float endLatitude, float startLongitude, float endLongitude, string surgeConfirmationId, string paymentMethodId, int seats = 4)
         {
-            FareId = fare_id;
-            ProductId = product_id;
-            StartLatitude = start_latitude;
-            EndLatitude = end_latitude;
-            StartLongitude = start_longitude;
-            EndLongitude = end_longitude;
-            SurgeConfirmationId = surge_confirmation_id;
-            PaymentMethodId = payment_method_id;
+            FareId = fareId;
+            ProductId = productId;
+            StartLatitude = startLatitude;
+            EndLatitude = endLatitude;
+            StartLongitude = startLongitude;
+            EndLongitude = endLongitude;
+            SurgeConfirmationId = surgeConfirmationId;
+            PaymentMethodId = paymentMethodId;
             Seats = seats;
         }
 
-        [DataMember(Name = "fare_id", IsRequired = true)]
+        [DataMember(Name = "fareId")]
         public string FareId { get; set; }
 
-        [DataMember(Name = "product_id", IsRequired = true)]
+        [DataMember(Name = "productId")]
         public string ProductId { get; set; }
 
-        [DataMember(Name = "start_latitude", IsRequired = true)]
+        [DataMember(Name = "startLatitude")]
         public float StartLatitude { get; set; }
 
-        [DataMember(Name = "end_latitude", IsRequired = true)]
+        [DataMember(Name = "endLatitude")]
         public float EndLatitude { get; set; }
 
-        [DataMember(Name = "start_longitude", IsRequired = true)]
+        [DataMember(Name = "startLongitude")]
         public float StartLongitude { get; set; }
 
-        [DataMember(Name = "end_longitude", IsRequired = true)]
+        [DataMember(Name = "endLongitude")]
         public float EndLongitude { get; set; }
 
-        [DataMember(Name = "surge_confirmation_id")]
+        [DataMember(Name = "surgeConfirmationId")]
         public string SurgeConfirmationId { get; set; }
 
-        [DataMember(Name = "payment_method_id")]
+        [DataMember(Name = "paymentMethodId")]
         public string PaymentMethodId { get; set; }
 
         [DataMember(Name = "seats")]
