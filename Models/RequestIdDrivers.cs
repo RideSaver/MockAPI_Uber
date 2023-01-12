@@ -7,28 +7,30 @@ namespace UberAPI.Models
     [DataContract(Name = "request_id_drivers")]
     public class RequestIdDrivers : IEquatable<RequestIdDrivers>
     {
-        public RequestIdDrivers(string phoneNumber = default(string), string smsNumber = default(string), float rating = default(float), string pictureUrl = default(string), string name = default(string))
+        [JsonConstructor]
+        public RequestIdDrivers() { }
+        public RequestIdDrivers(string phoneNumber, string smsNumber, float rating, string pictureUrl, string name)
         {
-            this.PhoneNumber = phoneNumber;
-            this.SmsNumber = smsNumber;
-            this.Rating = rating;
-            this.PictureUrl = pictureUrl;
-            this.Name = name;
+            PhoneNumber = phoneNumber;
+            SmsNumber = smsNumber;
+            Rating = rating;
+            PictureUrl = pictureUrl;
+            Name = name;
         }
 
-        [DataMember(Name="phone_number")]
+        [DataMember]
         public string? PhoneNumber { get; set; }
 
-        [DataMember(Name="sms_number")]
+        [DataMember]
         public string? SmsNumber { get; set; }
 
-        [DataMember(Name="rating")]
+        [DataMember]
         public float? Rating { get; set; }
 
-        [DataMember(Name="picture_url")]
+        [DataMember]
         public string? PictureUrl { get; set; }
 
-        [DataMember(Name="name")]
+        [DataMember]
         public string? Name { get; set; }
         public override string ToString()
         {

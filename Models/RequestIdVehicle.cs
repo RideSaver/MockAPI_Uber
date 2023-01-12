@@ -7,24 +7,24 @@ namespace UberAPI.Models
     [DataContract(Name = "request_id_vehicle")]
     public class RequestIdVehicle : IEquatable<RequestIdVehicle>
     {
-        public RequestIdVehicle(string make = default(string), string model = default(string), string licensePlate = default(string), string pictureUrl = default(string))
+        public RequestIdVehicle(string make, string model, string licensePlate, string pictureUrl)
         {
-            this.Make = make;
-            this.Model = model;
-            this.LicensePlate = licensePlate;
-            this.PictureUrl = pictureUrl;
+            Make = make;
+            Model = model;
+            LicensePlate = licensePlate;
+            PictureUrl = pictureUrl;
         }
 
-        [DataMember(Name="make")]
+        [DataMember]
         public string? Make { get; set; }
 
-        [DataMember(Name="model")]
+        [DataMember]
         public string? Model { get; set; }
 
-        [DataMember(Name="license_plate")]
+        [DataMember]
         public string? LicensePlate { get; set; }
 
-        [DataMember(Name="picture_url")]
+        [DataMember]
         public string? PictureUrl { get; set; }
         public override string ToString()
         {

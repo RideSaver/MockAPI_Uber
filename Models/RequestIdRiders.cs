@@ -7,20 +7,20 @@ namespace UberAPI.Models
     [DataContract(Name = "request_id_riders")]
     public class RequestIdRiders : IEquatable<RequestIdRiders>
     {
-        public RequestIdRiders(string riderId = default(string), string firstName = default(string), bool me = default(bool))
+        public RequestIdRiders(string riderId, string firstName, bool me = true)
         {
-            this.RiderId = riderId;
-            this.FirstName = firstName;
-            this.Me = me;
+            RiderId = riderId;
+            FirstName = firstName;
+            Me = me;
         }
 
-        [DataMember(Name="rider_id")]
+        [DataMember]
         public string? RiderId { get; set; }
 
-        [DataMember(Name="first_name")]
+        [DataMember]
         public string? FirstName { get; set; }
 
-        [DataMember(Name="me")]
+        [DataMember]
         public bool? Me { get; set; }
         public override string ToString()
         {

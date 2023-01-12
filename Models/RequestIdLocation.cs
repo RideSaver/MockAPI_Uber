@@ -7,20 +7,20 @@ namespace UberAPI.Models
     [DataContract(Name = "request_id_location")]
     public class RequestIdLocation : IEquatable<RequestIdLocation>
     {
-        public RequestIdLocation(float latitude = default(float), float longitude = default(float), int bearing = default(int))
+        public RequestIdLocation(float latitude, float longitude, int bearing)
         {
-            this.Latitude = latitude;
-            this.Longitude = longitude;
-            this.Bearing = bearing;
+            Latitude = latitude;
+            Longitude = longitude;
+            Bearing = bearing;
         }
 
-        [DataMember(Name="latitude")]
+        [DataMember]
         public float? Latitude { get; set; }
 
-        [DataMember(Name="longitude")]
+        [DataMember]
         public float? Longitude { get; set; }
 
-        [DataMember(Name="bearing")]
+        [DataMember]
         public int? Bearing { get; set; }
         public override string ToString()
         {

@@ -58,7 +58,7 @@ namespace UberAPI.Controllers
             var requestInstance = await _requestsRepository.PostRequest(body);
             requestInstance.ProductId = body.ProductId!.ToString();
 
-            _logger.LogInformation($"[UberAPI:RequestsController:PostRequest] Returning (RequestId) received from the client... \n{requestInstance}");
+            _logger.LogInformation($"[UberAPI:RequestsController:PostRequest] Returning (RequestId) to the client... \n{requestInstance}");
 
             return Content(requestInstance.ToJson(), "application/json");
         }

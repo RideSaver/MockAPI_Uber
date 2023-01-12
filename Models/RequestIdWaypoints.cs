@@ -7,24 +7,24 @@ namespace UberAPI.Models
     [DataContract(Name = "request_id_waypoints")]
     public class RequestIdWaypoints : IEquatable<RequestIdWaypoints>
     {
-        public RequestIdWaypoints(string riderId = default(string), float latitude = default(float), string type = default(string), float longitude = default(float))
+        public RequestIdWaypoints(string riderId, float latitude, string type, float longitude)
         {
-            this.RiderId = riderId;
-            this.Latitude = latitude;
-            this.Type = type;
-            this.Longitude = longitude;
+            RiderId = riderId;
+            Latitude = latitude;
+            Type = type;
+            Longitude = longitude;
         }
 
-        [DataMember(Name="rider_id")]
+        [DataMember]
         public string? RiderId { get; set; }
 
-        [DataMember(Name="latitude")]
+        [DataMember]
         public float? Latitude { get; set; }
 
-        [DataMember(Name="type")]
+        [DataMember]
         public string? Type { get; set; }
 
-        [DataMember(Name="longitude")]
+        [DataMember]
         public float? Longitude { get; set; }
         public override string ToString()
         {

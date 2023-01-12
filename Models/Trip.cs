@@ -7,32 +7,32 @@ namespace UberAPI.Models
     [DataContract(Name = "trip")]
     public class Trip : IEquatable<Trip>
     {
-        public Trip(string alias = default(string), float latitude = default(float), float longitude = default(float), string name = default(string), string address = default(string), float eta = default(float))
+        public Trip(string alias, float latitude, float longitude, string name, string address, float eta)
         {
-            this.Alias = alias;
-            this.Latitude = latitude;
-            this.Longitude = longitude;
-            this.Name = name;
-            this.Address = address;
-            this.Eta = eta;
+            Alias = alias;
+            Latitude = latitude;
+            Longitude = longitude;
+            Name = name;
+            Address = address;
+            Eta = eta;
         }
 
-        [DataMember(Name="alias")]
+        [DataMember]
         public string? Alias { get; set; }
 
-        [DataMember(Name="latitude")]
+        [DataMember]
         public float? Latitude { get; set; }
 
-        [DataMember(Name="longitude")]
+        [DataMember]
         public float? Longitude { get; set; }
 
-        [DataMember(Name="name")]
+        [DataMember]
         public string? Name { get; set; }
 
-        [DataMember(Name="address")]
+        [DataMember]
         public string? Address { get; set; }
 
-        [DataMember(Name="eta")]
+        [DataMember]
         public float? Eta { get; set; }
         public override string ToString()
         {

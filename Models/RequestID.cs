@@ -23,40 +23,40 @@ namespace UberAPI.Models
             this.Riders = riders;
         }
 
-        [DataMember(Name="product_id")]
+        [DataMember]
         public string? ProductId { get; set; }
 
-        [DataMember(Name="request_id")]
+        [DataMember]
         public string? Id { get; set; }
 
-        [DataMember(Name="status")]
+        [DataMember]
         public string? Status { get; set; }
 
-        [DataMember(Name="surge_multiplier")]
+        [DataMember]
         public float? SurgeMultiplier { get; set; }
 
-        [DataMember(Name="shared")]
+        [DataMember]
         public bool? Shared { get; set; }
 
-        [DataMember(Name="drivers")]
+        [DataMember]
         public RequestIdDrivers? Drivers { get; set; }
 
-        [DataMember(Name="vehicle")]
+        [DataMember]
         public RequestIdVehicle? Vehicle { get; set; }
 
-        [DataMember(Name="location")]
+        [DataMember]
         public RequestIdLocation? Location { get; set; }
 
-        [DataMember(Name="pickup")]
+        [DataMember]
         public Trip Pickup { get; set; }
 
-        [DataMember(Name="destination")]
+        [DataMember]
         public Trip? Destination { get; set; }
 
-        [DataMember(Name="waypoints")]
+        [DataMember]
         public RequestIdWaypoints? Waypoints { get; set; }
 
-        [DataMember(Name="riders")]
+        [DataMember]
         public RequestIdRiders? Riders { get; set; }
         public override string ToString()
         {
