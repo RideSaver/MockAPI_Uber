@@ -9,8 +9,8 @@ namespace UberAPI.Models
     public class CreateRequests : IEquatable<CreateRequests>, IValidatableObject
     {
         [JsonConstructorAttribute]
-        protected CreateRequests() { }
-        public CreateRequests(string fareId = default, string productId = default, float startLatitude = default(float), float endLatitude = default(float), float startLongitude = default(float), float endLongitude = default(float), string surgeConfirmationId = default(string), string paymentMethodId = default(string), int seats = default(int))
+        public CreateRequests() { }
+        public CreateRequests(string? fareId = default, string? productId = default, float? startLatitude = default(float), float? endLatitude = default(float), float? startLongitude = default(float), float? endLongitude = default(float), string? surgeConfirmationId = default(string), string? paymentMethodId = default(string), int? seats = default(int))
         {
             FareId = fareId;
             ProductId = productId;
@@ -68,12 +68,12 @@ namespace UberAPI.Models
 
         public string ToJson()
         {
-            return JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
+            return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
 
         public override bool Equals(object input)
         {
-            return Equals(input as CreateRequests);
+            return Equals((CreateRequests)input);
         }
 
         public bool Equals(CreateRequests input)

@@ -6,16 +6,15 @@ using UberAPI.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddHealthChecks();
 
 builder.Services.AddControllers().AddJsonOptions(options =>
 {
+    options.JsonSerializerOptions.PropertyNameCaseInsensitive = true;
     options.JsonSerializerOptions.NumberHandling = System.Text.Json.Serialization.JsonNumberHandling.AllowReadingFromString;
 });
-
 
 builder.Services.AddTransient<IEstimateRepository, EstimateRepository>();
 builder.Services.AddTransient<IProductRepository, ProductRepository>();
@@ -42,7 +41,6 @@ app.UseForwardedHeaders(new ForwardedHeadersOptions
 app.UseExceptionHandler(new ExceptionHandlerOptions() { AllowStatusCode404Response = true, ExceptionHandlingPath = "/error" });
 
 app.UseHttpsRedirection();
-
 app.MapControllers();
 app.MapHealthChecks("/healthz");
 app.UseRouting();

@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
-using UberAPI.Filters;
 using UberAPI.Interface;
 using UberAPI.Models;
 
@@ -41,17 +40,24 @@ namespace UberAPI.Controllers
 
             if (requestInfo is null) { return BadRequest("Invalid request data!"); }
 
-            var requestInstance = await _requestsRepository.PostRequest(requestInfo);
+            var rideRequest = new CreateRequests
+            {
+                FareId = requestInfo.FareId!.ToString(),
+                ProductId = requestInfo.ProductId!.ToString(),
+                StartLatitude = requestInfo.StartLatitude,
+                EndLatitude = requestInfo.EndLatitude,
+                StartLongitude = requestInfo.StartLongitude,
+                EndLongitude = requestInfo.EndLongitude,
+                SurgeConfirmationId = requestInfo.SurgeConfirmationId,
+                PaymentMethodId = requestInfo.PaymentMethodId,
+                Seats = requestInfo.Seats
+            };
+
+            var requestInstance = await _requestsRepository.PostRequest(rideRequest);
             requestInstance.ProductId = requestInfo.ProductId!.ToString();
 
             return Content(requestInstance.ToJson(), "application/json");
         }
-
-        [HttpDelete][Route("/request/{request_id}")]
-        public IActionResult DeleteRequest([FromRoute][Required] string requestId) => new NoContentResult();
-
-        [HttpPatch][Route("/request/{request_id}")]
-        public IActionResult PatchRequest([FromRoute][Required] string requestId) => new NoContentResult();
 
         [HttpPost]
         [Route("/requests/estimate")]
@@ -70,5 +76,13 @@ namespace UberAPI.Controllers
 
             return Content(estimate.ToJson(), "application/json");
         }
+
+        [HttpDelete]
+        [Route("/request/{request_id}")]
+        public IActionResult DeleteRequest([FromRoute][Required] string requestId) => new NoContentResult();
+
+        [HttpPatch]
+        [Route("/request/{request_id}")]
+        public IActionResult PatchRequest([FromRoute][Required] string requestId) => new NoContentResult();
     }
 }
