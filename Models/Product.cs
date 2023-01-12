@@ -62,76 +62,76 @@ namespace UberAPI.Models
         /// <summary>
         /// Gets or Sets UpfrontFareEnabled
         /// </summary>
-        [DataMember(Name = "upfront_fare_enabled", EmitDefaultValue = true)]
+        [DataMember]
         public bool UpfrontFareEnabled { get; set; }
 
         /// <summary>
         /// Capacity of product. For example, 4 people.
         /// </summary>
         /// <value>Capacity of product. For example, 4 people.</value>
-        [DataMember(Name = "capacity", EmitDefaultValue = false)]
+        [DataMember]
         public int Capacity { get; set; }
 
         /// <summary>
         /// Unique identifier representing a specific product for a given latitude &amp; longitude. For example, uberX in San Francisco will have a different product_id than uberX in Los Angeles.
         /// </summary>
         /// <value>Unique identifier representing a specific product for a given latitude &amp; longitude. For example, uberX in San Francisco will have a different product_id than uberX in Los Angeles.</value>
-        [DataMember(Name = "product_id", EmitDefaultValue = false)]
+        [DataMember]
         public string ProductId { get; set; }
 
         /// <summary>
         /// Gets or Sets PriceDetails
         /// </summary>
-        [DataMember(Name = "price_details", EmitDefaultValue = false)]
+        [DataMember]
         public ProductPriceDetails PriceDetails { get; set; }
 
         /// <summary>
         /// Image URL representing the product.
         /// </summary>
         /// <value>Image URL representing the product.</value>
-        [DataMember(Name = "image", EmitDefaultValue = false)]
+        [DataMember]
         public string Image { get; set; }
 
         /// <summary>
         /// Specifies whether this product allows cash payments
         /// </summary>
         /// <value>Specifies whether this product allows cash payments</value>
-        [DataMember(Name = "cash_enabled", EmitDefaultValue = true)]
+        [DataMember]
         public bool CashEnabled { get; set; }
 
         /// <summary>
         /// Specifies whether this product allows for the pickup and drop off of other riders during the trip
         /// </summary>
         /// <value>Specifies whether this product allows for the pickup and drop off of other riders during the trip</value>
-        [DataMember(Name = "shared", EmitDefaultValue = true)]
+        [DataMember]
         public bool Shared { get; set; }
 
         /// <summary>
         /// An abbreviated description of the product. Localized according to Accept-Language header.
         /// </summary>
         /// <value>An abbreviated description of the product. Localized according to Accept-Language header.</value>
-        [DataMember(Name = "short_description", EmitDefaultValue = false)]
+        [DataMember]
         public string ShortDescription { get; set; }
 
         /// <summary>
         /// Display name of product.
         /// </summary>
         /// <value>Display name of product.</value>
-        [DataMember(Name = "display_name", EmitDefaultValue = false)]
+        [DataMember]
         public string DisplayName { get; set; }
 
         /// <summary>
         /// The product group that this product belongs to. One of rideshare,uberx,uberxl,uberblack, suv, or taxi.
         /// </summary>
         /// <value>The product group that this product belongs to. One of rideshare,uberx,uberxl,uberblack, suv, or taxi.</value>
-        [DataMember(Name = "product_group", EmitDefaultValue = false)]
+        [DataMember]
         public string ProductGroup { get; set; }
 
         /// <summary>
         /// Description of product.
         /// </summary>
         /// <value>Description of product.</value>
-        [DataMember(Name = "description", EmitDefaultValue = false)]
+        [DataMember]
         public string Description { get; set; }
 
         /// <summary>

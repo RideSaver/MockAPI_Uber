@@ -15,13 +15,13 @@ namespace UberAPI.Models
             PickupEstimate = pickupEstimate;
         }
 
-        [DataMember(Name = "fare", EmitDefaultValue = false)]
+        [DataMember]
         public EstimateWithoutSurgeFare Fare { get; set; }
 
-        [DataMember(Name = "trip", EmitDefaultValue = false)]
+        [DataMember]
         public EstimateWithoutSurgeTrip Trip { get; set; }
 
-        [DataMember(Name = "pickup_estimate", EmitDefaultValue = false)]
+        [DataMember]
         public int PickupEstimate { get; set; }
 
 

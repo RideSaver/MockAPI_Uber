@@ -14,13 +14,13 @@ namespace UberAPI.Models
             PickupEstimate = pickupEstimate;
         }
 
-        [DataMember(Name = "estimate", EmitDefaultValue = false)]
+        [DataMember]
         public EstimateWithSurgeEstimate Estimate { get; set; }
 
-        [DataMember(Name = "trip", EmitDefaultValue = false)]
+        [DataMember]
         public EstimateWithoutSurgeTrip Trip { get; set; }
 
-        [DataMember(Name = "pickup_estimate", EmitDefaultValue = false)]
+        [DataMember]
         public int PickupEstimate { get; set; }
 
         public override string ToString()

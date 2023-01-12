@@ -7,16 +7,16 @@ namespace UberAPI.Models
     [DataContract]
     public class TimeEstimate : IEquatable<TimeEstimate>
     { 
-        [DataMember(Name="localized_display_name")]
+        [DataMember]
         public string LocalizedDisplayName { get; set; }
 
-        [DataMember(Name="estimate")]
+        [DataMember]
         public int? Estimate { get; set; }
 
-        [DataMember(Name="display_name")]
+        [DataMember]
         public string DisplayName { get; set; }
 
-        [DataMember(Name="product_id")]
+        [DataMember]
         public string ProductId { get; set; }
         public override string ToString()
         {

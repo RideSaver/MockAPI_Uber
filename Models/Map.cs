@@ -6,11 +6,11 @@ namespace UberAPI.Models
 { 
     [DataContract]
     public class Map : IEquatable<Map>
-    { 
-        [DataMember(Name="request_id")]
+    {
+        [DataMember]
         public string RequestId { get; set; }
 
-        [DataMember(Name="href")]
+        [DataMember]
         public string Href { get; set; }
 
         public override string ToString()

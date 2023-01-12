@@ -6,30 +6,30 @@ namespace UberAPI.Models
 { 
     [DataContract]
     public class ActivitiesHistory : IEquatable<ActivitiesHistory>
-    { 
- 
-        [DataMember(Name="status")]
+    {
+
+        [DataMember]
         public string Status { get; set; }
 
-        [DataMember(Name="distance")]
+        [DataMember]
         public float? Distance { get; set; }
 
-        [DataMember(Name="product_id")]
+        [DataMember]
         public string ProductId { get; set; }
 
-        [DataMember(Name="start_time")]
+        [DataMember]
         public int? StartTime { get; set; }
 
-        [DataMember(Name="start_city")]
+        [DataMember]
         public ActivitiesHistoryStartCity StartCity { get; set; }
 
-        [DataMember(Name="end_time")]
+        [DataMember]
         public Object EndTime { get; set; }
 
-        [DataMember(Name="request_id")]
+        [DataMember]
         public string RequestId { get; set; }
 
-        [DataMember(Name="request_time")]
+        [DataMember]
         public int? RequestTime { get; set; }
         public override string ToString()
         {

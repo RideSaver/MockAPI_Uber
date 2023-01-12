@@ -7,28 +7,28 @@ namespace UberAPI.Models
     [DataContract]
     public class Profile : IEquatable<Profile>
     { 
-        [DataMember(Name="picture")]
+        [DataMember]
         public string Picture { get; set; }
 
-        [DataMember(Name="first_name")]
+        [DataMember]
         public string FirstName { get; set; }
 
-        [DataMember(Name="last_name")]
+        [DataMember]
         public string LastName { get; set; }
 
-        [DataMember(Name="uuid")]
+        [DataMember]
         public string Uuid { get; set; }
 
-        [DataMember(Name="rider_id")]
+        [DataMember]
         public string RiderId { get; set; }
 
-        [DataMember(Name="email")]
+        [DataMember]
         public string Email { get; set; }
 
-        [DataMember(Name="mobile_verified")]
+        [DataMember]
         public bool? MobileVerified { get; set; }
 
-        [DataMember(Name="promo_code")]
+        [DataMember]
         public string PromoCode { get; set; }
         public override string ToString()
         {

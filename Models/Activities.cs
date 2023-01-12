@@ -6,17 +6,17 @@ namespace UberAPI.Models
 { 
     [DataContract]
     public class Activities : IEquatable<Activities>
-    { 
-        [DataMember(Name="count")]
+    {
+        [DataMember]
         public int? Count { get; set; }
 
-        [DataMember(Name="history")]
+        [DataMember]
         public ActivitiesHistory History { get; set; }
 
-        [DataMember(Name="limit")]
+        [DataMember]
         public int? Limit { get; set; }
 
-        [DataMember(Name="offset")]
+        [DataMember]
         public int? Offset { get; set; }
 
         public override string ToString()

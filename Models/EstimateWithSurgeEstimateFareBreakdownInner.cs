@@ -15,16 +15,16 @@ namespace UberAPI.Models
             DisplayName = displayName;
         }
 
-        [DataMember(Name = "low_amount", EmitDefaultValue = false)]
+        [DataMember]
         public decimal LowAmount { get; set; }
 
-        [DataMember(Name = "high_amount", EmitDefaultValue = false)]
+        [DataMember]
         public decimal HighAmount { get; set; }
 
-        [DataMember(Name = "display_amount", EmitDefaultValue = false)]
+        [DataMember]
         public string DisplayAmount { get; set; }
 
-        [DataMember(Name = "display_name", EmitDefaultValue = false)]
+        [DataMember]
         public string DisplayName { get; set; }
 
         public override string ToString()

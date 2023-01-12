@@ -7,13 +7,13 @@ namespace UberAPI.Models
     [DataContract]
     public class ActivitiesHistoryStartCity : IEquatable<ActivitiesHistoryStartCity>
     { 
-        [DataMember(Name="latitude")]
+        [DataMember]
         public float? Latitude { get; set; }
 
-        [DataMember(Name="display_name")]
+        [DataMember]
         public string DisplayName { get; set; }
 
-        [DataMember(Name="longitude")]
+        [DataMember]
         public float? Longitude { get; set; }
         public override string ToString()
         {

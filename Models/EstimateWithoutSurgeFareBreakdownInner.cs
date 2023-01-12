@@ -54,28 +54,28 @@ namespace UberAPI.Models
         /// The type of breakdown this object represents. Can be base_fare or promotion.
         /// </summary>
         /// <value>The type of breakdown this object represents. Can be base_fare or promotion.</value>
-        [DataMember(Name = "type", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember]
         public string Type { get; set; }
 
         /// <summary>
         /// A notice to show to the rider when a fare is higher than normal due to increased demand.
         /// </summary>
         /// <value>A notice to show to the rider when a fare is higher than normal due to increased demand.</value>
-        [DataMember(Name = "notice", EmitDefaultValue = false)]
+        [DataMember]
         public string Notice { get; set; }
 
         /// <summary>
         /// The value of this portion of the fare. This can be a negative or positive value.
         /// </summary>
         /// <value>The value of this portion of the fare. This can be a negative or positive value.</value>
-        [DataMember(Name = "value", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember]
         public decimal Value { get; set; }
 
         /// <summary>
         /// A string that can be displayed to the user representing this portion of the fare.
         /// </summary>
         /// <value>A string that can be displayed to the user representing this portion of the fare.</value>
-        [DataMember(Name = "name", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember]
         public string Name { get; set; }
 
         /// <summary>

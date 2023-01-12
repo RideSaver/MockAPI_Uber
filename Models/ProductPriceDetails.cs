@@ -7,24 +7,24 @@ namespace UberAPI.Models
     [DataContract]
     public class ProductPriceDetails : IEquatable<ProductPriceDetails>
     { 
-        [DataMember(Name="cost_per_minute")]
+        [DataMember]
         public float? CostPerMinute { get; set; }
 
-        [DataMember(Name="distance_unit")]
+        [DataMember]
         public string DistanceUnit { get; set; }
 
-        [DataMember(Name="minimum")]
+        [DataMember]
         public float? Minimum { get; set; }
 
-        [DataMember(Name="cost_per_distance")]
+        [DataMember]
         public float? CostPerDistance { get; set; }
 
-        [DataMember(Name="base")]
+        [DataMember]
         public float? _Base { get; set; }
 
-        [DataMember(Name="canellation_fee")]
+        [DataMember]
         public float? CanellationFee { get; set; }
-        [DataMember(Name="currency_code")]
+        [DataMember]
         public string CurrencyCode { get; set; }
         public override string ToString()
         {

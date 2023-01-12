@@ -6,8 +6,8 @@ namespace UberAPI.Models
 { 
     [DataContract]
     public class ProductList : IEquatable<ProductList>
-    { 
-        [DataMember(Name="products")]
+    {
+        [DataMember]
         public List<Product> Products { get; set; }
         public override string ToString()
         {

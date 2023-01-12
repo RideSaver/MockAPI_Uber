@@ -16,13 +16,13 @@ namespace UberAPI.Models
             DurationEstimate = durationEstimate;
             DistanceEstimate = distanceEstimate;
         }
-        [DataMember(Name = "distance_unit", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember]
         public string DistanceUnit { get; set; }
 
-        [DataMember(Name = "duration_estimate", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember]
         public int DurationEstimate { get; set; }
 
-        [DataMember(Name = "distance_estimate", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember]
         public decimal DistanceEstimate { get; set; }
 
         public override string ToString()

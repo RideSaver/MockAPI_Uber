@@ -7,34 +7,34 @@ namespace UberAPI.Models
     [DataContract]
     public class PriceEstimate : IEquatable<PriceEstimate>
     { 
-        [DataMember(Name="localized_display_name")]
+        [DataMember]
         public string LocalizedDisplayName { get; set; }
 
-        [DataMember(Name="distance")]
+        [DataMember]
         public float? Distance { get; set; }
 
-        [DataMember(Name="display_name")]
+        [DataMember]
         public string DisplayName { get; set; }
 
-        [DataMember(Name="product_id")]
+        [DataMember]
         public string ProductId { get; set; }
 
-        [DataMember(Name="high_estimate")]
+        [DataMember]
         public decimal? HighEstimate { get; set; }
 
-        [DataMember(Name="low_estimate")]
+        [DataMember]
         public decimal? LowEstimate { get; set; }
 
-        [DataMember(Name="duration")]
+        [DataMember]
         public int? Duration { get; set; }
 
-        [DataMember(Name="estimate")]
+        [DataMember]
         public string Estimate { get; set; }
 
-        [DataMember(Name="surge_multiplier")]
+        [DataMember]
         public decimal? SurgeMultiplier { get; set; }
 
-        [DataMember(Name="currency_code")]
+        [DataMember]
         public string CurrencyCode { get; set; }
 
         public override string ToString()

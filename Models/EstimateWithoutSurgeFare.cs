@@ -17,22 +17,22 @@ namespace UberAPI.Models
             this.Breakdown = breakdown;
         }
 
-        [DataMember(Name = "value", EmitDefaultValue = false)]
+        [DataMember]
         public decimal Value { get; set; }
 
-        [DataMember(Name = "fare_id", EmitDefaultValue = false)]
+        [DataMember]
         public string FareId { get; set; }
-
-        [DataMember(Name = "expires_at", EmitDefaultValue = false)]
+            
+        [DataMember]
         public int ExpiresAt { get; set; }
 
-        [DataMember(Name = "display", EmitDefaultValue = false)]
+        [DataMember]
         public string Display { get; set; }
 
-        [DataMember(Name = "currency_code", EmitDefaultValue = false)]
+        [DataMember]
         public string CurrencyCode { get; set; }
 
-        [DataMember(Name = "breakdown", EmitDefaultValue = false)]
+        [DataMember]
         public List<EstimateWithoutSurgeFareBreakdownInner> Breakdown { get; set; }
         public override string ToString()
         {

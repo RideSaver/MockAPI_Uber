@@ -7,31 +7,31 @@ namespace UberAPI.Models
     [DataContract]
     public class Receipt : IEquatable<Receipt>
     { 
-        [DataMember(Name="request_id")]
+        [DataMember]
         public string RequestId { get; set; }
 
-        [DataMember(Name="subtotal")]
+        [DataMember]
         public string Subtotal { get; set; }
 
-        [DataMember(Name="total_charged")]
+        [DataMember]
         public string TotalCharged { get; set; }
 
-        [DataMember(Name="total_owed")]
+        [DataMember]
         public float? TotalOwed { get; set; }
 
-        [DataMember(Name="total_fare")]
+        [DataMember]
         public string TotalFare { get; set; }
 
-        [DataMember(Name="currency_code")]
+        [DataMember]
         public string CurrencyCode { get; set; }
 
-        [DataMember(Name="duration")]
+        [DataMember]
         public string Duration { get; set; }
 
-        [DataMember(Name="distance")]
+        [DataMember]
         public string Distance { get; set; }
 
-        [DataMember(Name="distance_label")]
+        [DataMember]
         public string DistanceLabel { get; set; }
 
         public override string ToString()

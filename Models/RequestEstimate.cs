@@ -8,10 +8,7 @@ namespace UberAPI.Models
     [DataContract(Name = "RequestEstimate")]
     public class RequestEstimate : IEquatable<RequestEstimate>, IValidatableObject
     {
-        [JsonConstructorAttribute]
         public RequestEstimate() { }
-
-        [JsonConstructorAttribute]
         public RequestEstimate(string productId = default!, decimal startLatitutde = default, decimal startLongitude = default, string? startPlaceId = default, decimal endLatitude = default, decimal endLongitude = default, string? endPlaceId = default, int? seatCount = default)
         {
             if (string.IsNullOrEmpty(productId))
@@ -29,28 +26,28 @@ namespace UberAPI.Models
             SeatCount= seatCount;
         } 
 
-        [DataMember(Name = "product_id", EmitDefaultValue = false)]
+        [DataMember]
         public string? ProductId { get; set; }
 
-        [DataMember(Name = "start_latitude", EmitDefaultValue = false)]
+        [DataMember]
         public decimal? StartLatitude { get; set; }
 
-        [DataMember(Name = "start_longitude", EmitDefaultValue = false)]
+        [DataMember]
         public decimal? StartLongitude { get; set; }
 
-        [DataMember(Name = "start_place_id", IsRequired = false, EmitDefaultValue = false)]
+        [DataMember]
         public string? StartPlaceId { get; set; }
 
-        [DataMember(Name = "end_latitude", EmitDefaultValue = false)]
+        [DataMember]
         public decimal? EndLatitude { get; set; }
 
-        [DataMember(Name = "end_longitude", EmitDefaultValue = false)]
+        [DataMember]
         public decimal? EndLongitude { get; set; }
 
-        [DataMember(Name = "end_place_id", IsRequired = false, EmitDefaultValue = false)]
+        [DataMember]
         public string? EndPlaceId { get; set; }
 
-        [DataMember(Name = "seat_count", IsRequired = false, EmitDefaultValue = false)]
+        [DataMember]
         public int? SeatCount { get; set; }
 
 

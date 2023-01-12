@@ -7,13 +7,13 @@ namespace UberAPI.Models
     [DataContract]
     public class PaymentMethod : IEquatable<PaymentMethod>
     { 
-        [DataMember(Name="payment_method_id")]
+        [DataMember]
         public string PaymentMethodId { get; set; }
 
-        [DataMember(Name="type")]
+        [DataMember]
         public string Type { get; set; }
 
-        [DataMember(Name="description")]
+        [DataMember]
         public string Description { get; set; }
 
         public override string ToString()

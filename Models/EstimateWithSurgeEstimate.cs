@@ -20,31 +20,31 @@ namespace UberAPI.Models
             CurrencyCode = currencyCode;
         }
 
-        [DataMember(Name = "surge_confirmation_href", EmitDefaultValue = false)]
+        [DataMember]
         public string SurgeConfirmationHref { get; set; }
 
-        [DataMember(Name = "high_estimate", EmitDefaultValue = false)]
+        [DataMember]
         public int HighEstimate { get; set; }
 
-        [DataMember(Name = "surge_confirmation_id", EmitDefaultValue = false)]
+        [DataMember]
         public string SurgeConfirmationId { get; set; }
 
-        [DataMember(Name = "minimum", EmitDefaultValue = false)]
+        [DataMember]
         public int Minimum { get; set; }
 
-        [DataMember(Name = "low_estimate", EmitDefaultValue = false)]
+        [DataMember]
         public int LowEstimate { get; set; }
 
-        [DataMember(Name = "fare_breakdown", EmitDefaultValue = false)]
+        [DataMember]
         public List<EstimateWithSurgeEstimateFareBreakdownInner> FareBreakdown { get; set; }
 
-        [DataMember(Name = "surge_multiplier", EmitDefaultValue = false)]
+        [DataMember]
         public decimal SurgeMultiplier { get; set; }
 
-        [DataMember(Name = "display", EmitDefaultValue = false)]
+        [DataMember]
         public string Display { get; set; }
 
-        [DataMember(Name = "currency_code", EmitDefaultValue = false)]
+        [DataMember]
         public string CurrencyCode { get; set; }
 
         public override string ToString()

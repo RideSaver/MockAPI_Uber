@@ -7,13 +7,13 @@ namespace UberAPI.Models
     [DataContract]
     public class Error
     { 
-        [DataMember(Name="fields")]
+        [DataMember]
         public string Fields { get; set; }
 
-        [DataMember(Name="message")]
+        [DataMember]
         public string Message { get; set; }
 
-        [DataMember(Name="code")]
+        [DataMember]
         public string Code { get; set; }
 
         public override string ToString()

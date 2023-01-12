@@ -8,10 +8,10 @@ namespace UberAPI.Models
     public class Payment : IEquatable<Payment>
     { 
  
-        [DataMember(Name="payment_methods")]
+        [DataMember]
         public List<PaymentMethod> PaymentMethods { get; set; }
 
-        [DataMember(Name="last_used")]
+        [DataMember]
         public string LastUsed { get; set; }
         public override string ToString()
         {
