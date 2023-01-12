@@ -53,8 +53,12 @@ namespace UberAPI.Controllers
                 Seats = requestInfo.Seats
             };
 
+            _logger.LogInformation($"[UberAPI:RequestsController:PostRequest] Instance (CreateRequest) received from the client... \n{rideRequest}");
+
             var requestInstance = await _requestsRepository.PostRequest(rideRequest);
             requestInstance.ProductId = requestInfo.ProductId!.ToString();
+
+            _logger.LogInformation($"[UberAPI:RequestsController:PostRequest] Returning (RequestId) received from the client... \n{requestInstance}");
 
             return Content(requestInstance.ToJson(), "application/json");
         }
@@ -66,11 +70,6 @@ namespace UberAPI.Controllers
         public async Task<ActionResult<RequestEstimateResponse>> PostRequestEstimate([FromBody] RequestEstimate requestBody)
         {
             if (requestBody is null) return BadRequest("Error: Invalid data receieved (null)");
-
-            _logger.LogInformation("[UberAPI:RequestsController:PostRequestEstimate] Controller endpoint invoked..");
-            _logger.LogInformation($"[UberAPI:RequestsController:PostRequestEstimate] Data Received: Product ID: {requestBody.ProductId}");
-            _logger.LogInformation($"[UberAPI:RequestsController:PostRequestEstimate] Data Received: Start long & lat: {requestBody.StartLongitude}-{requestBody.StartLatitude}");
-            _logger.LogInformation($"[UberAPI:RequestsController:PostRequestEstimate] Data Received: End long & lat: {requestBody.EndLongitude}-{requestBody.EndLatitude}");
 
             var estimate = await _requestsRepository.PostRequestEstimate(requestBody.ProductId!);
 
