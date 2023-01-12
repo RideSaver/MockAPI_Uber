@@ -42,8 +42,8 @@ namespace UberAPI.Controllers
 
             var rideRequest = new CreateRequests
             {
-                FareId = requestInfo.FareId!.ToString(),
-                ProductId = requestInfo.ProductId!.ToString(),
+                FareId = requestInfo.FareId.ToString(),
+                ProductId = requestInfo.ProductId.ToString(),
                 StartLatitude = requestInfo.StartLatitude,
                 EndLatitude = requestInfo.EndLatitude,
                 StartLongitude = requestInfo.StartLongitude,

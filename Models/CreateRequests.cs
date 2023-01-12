@@ -23,28 +23,28 @@ namespace UberAPI.Models
             Seats = seats;
         }
 
-        [DataMember(Name = "fare_id")]
+        [DataMember(Name = "fareId")]
         public string? FareId { get; set; }
 
-        [DataMember(Name = "product_id")]
+        [DataMember(Name = "productId")]
         public string? ProductId { get; set; }
 
-        [DataMember(Name = "start_latitude")]
+        [DataMember(Name = "startLatitude")]
         public float? StartLatitude { get; set; }
 
-        [DataMember(Name = "end_latitude")]
+        [DataMember(Name = "endLatitude")]
         public float? EndLatitude { get; set; }
 
-        [DataMember(Name = "start_longitude")]
+        [DataMember(Name = "startLongitude")]
         public float? StartLongitude { get; set; }
 
-        [DataMember(Name = "end_longitude")]
+        [DataMember(Name = "endLongitude")]
         public float? EndLongitude { get; set; }
 
-        [DataMember(Name = "surge_confirmation_id")]
+        [DataMember(Name = "surgeConfirmationId")]
         public string? SurgeConfirmationId { get; set; }
 
-        [DataMember(Name = "payment_method_id")]
+        [DataMember(Name = "paymentMethodId")]
         public string? PaymentMethodId { get; set; }
 
         [DataMember(Name = "seats")]
