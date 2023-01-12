@@ -10,19 +10,7 @@ namespace UberAPI.Models
     {
         [JsonConstructorAttribute]
         protected CreateRequests() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="CreateRequests" /> class.
-        /// </summary>
-        /// <param name="fareId">The key for the upfront fare of a ride. (required).</param>
-        /// <param name="productId">The unique ID of the product being requested. (required).</param>
-        /// <param name="startLatitude">The beginning or “pickup” latitude. Either this or start_place_id must be specified. (required).</param>
-        /// <param name="endLatitude">The final or destination latitude. Either this or end_place_id may be specified. (required).</param>
-        /// <param name="startLongitude">The beginning or “pickup” longitude. Either this or start_place_id must be specified. (required).</param>
-        /// <param name="endLongitude">The final or destination longitude. Either this or end_place_id may be specified./td&gt; (required).</param>
-        /// <param name="surgeConfirmationId">The unique identifier of the surge session for a user. Required when returned from a 409 Conflict response on previous POST attempt..</param>
-        /// <param name="paymentMethodId">The unique identifier of the payment method selected by a user. If set, the trip will be requested using this payment method. If not set, the trip will be requested using the user&#39;s last used payment method..</param>
-        /// <param name="seats">The number of seats required for uberPOOL. Default and maximum value is 2..</param>
-        public CreateRequests(string fareId = default(string), string productId = default(string), float startLatitude = default(float), float endLatitude = default(float), float startLongitude = default(float), float endLongitude = default(float), string surgeConfirmationId = default(string), string paymentMethodId = default(string), int seats = default(int))
+        public CreateRequests(string? fareId = default(string), string? productId = default(string), float startLatitude = default(float), float endLatitude = default(float), float startLongitude = default(float), float endLongitude = default(float), string? surgeConfirmationId = default(string), string? paymentMethodId = default(string), int seats = default(int))
         {
             this.FareId = fareId;
             this.ProductId = productId;
@@ -35,32 +23,32 @@ namespace UberAPI.Models
             this.Seats = seats;
         }
 
-        [DataMember(Name = "fare_id", IsRequired = true, EmitDefaultValue = true)]
-        public string FareId { get; set; }
+        [DataMember(Name = "fareId", IsRequired = true, EmitDefaultValue = true)]
+        public string? FareId { get; set; }
 
-        [DataMember(Name = "product_id", IsRequired = true, EmitDefaultValue = true)]
-        public string ProductId { get; set; }
+        [DataMember(Name = "productId", IsRequired = true, EmitDefaultValue = true)]
+        public string? ProductId { get; set; }
 
-        [DataMember(Name = "start_latitude", IsRequired = true, EmitDefaultValue = true)]
-        public float StartLatitude { get; set; }
+        [DataMember(Name = "startLatitude", IsRequired = true, EmitDefaultValue = true)]
+        public float? StartLatitude { get; set; }
 
-        [DataMember(Name = "end_latitude", IsRequired = true, EmitDefaultValue = true)]
-        public float EndLatitude { get; set; }
+        [DataMember(Name = "endLatitude", IsRequired = true, EmitDefaultValue = true)]
+        public float? EndLatitude { get; set; }
 
-        [DataMember(Name = "start_longitude", IsRequired = true, EmitDefaultValue = true)]
-        public float StartLongitude { get; set; }
+        [DataMember(Name = "startLongitude", IsRequired = true, EmitDefaultValue = true)]
+        public float? StartLongitude { get; set; }
 
-        [DataMember(Name = "end_longitude", IsRequired = true, EmitDefaultValue = true)]
-        public float EndLongitude { get; set; }
+        [DataMember(Name = "endLongitude", IsRequired = true, EmitDefaultValue = true)]
+        public float? EndLongitude { get; set; }
 
-        [DataMember(Name = "surge_confirmation_id", EmitDefaultValue = false)]
-        public string SurgeConfirmationId { get; set; }
+        [DataMember(Name = "surgeConfirmationId", EmitDefaultValue = false)]
+        public string? SurgeConfirmationId { get; set; }
 
-        [DataMember(Name = "payment_method_id", EmitDefaultValue = false)]
-        public string PaymentMethodId { get; set; }
+        [DataMember(Name = "paymentMethodId", EmitDefaultValue = false)]
+        public string? PaymentMethodId { get; set; }
 
         [DataMember(Name = "seats", EmitDefaultValue = false)]
-        public int Seats { get; set; }
+        public int? Seats { get; set; }
 
         public override string ToString()
         {
