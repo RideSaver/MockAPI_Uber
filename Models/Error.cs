@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 namespace UberAPI.Models
 { 
     [DataContract]
-    public class Error : IEquatable<Error>
+    public class Error
     { 
         [DataMember(Name="fields")]
         public string Fields { get; set; }
@@ -30,34 +30,7 @@ namespace UberAPI.Models
         {
             return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
-        public override bool Equals(object obj)
-        {
-            if (ReferenceEquals(null, obj)) return false;
-            if (ReferenceEquals(this, obj)) return true;
-            return obj.GetType() == GetType() && Equals((Error)obj);
-        }
-        public bool Equals(Error other)
-        {
-            if (ReferenceEquals(null, other)) return false;
-            if (ReferenceEquals(this, other)) return true;
-
-            return 
-                (
-                    Fields == other.Fields ||
-                    Fields != null &&
-                    Fields.Equals(other.Fields)
-                ) && 
-                (
-                    Message == other.Message ||
-                    Message != null &&
-                    Message.Equals(other.Message)
-                ) && 
-                (
-                    Code == other.Code ||
-                    Code != null &&
-                    Code.Equals(other.Code)
-                );
-        }
+   
         public override int GetHashCode()
         {
             unchecked // Overflow is fine, just wrap
@@ -73,21 +46,5 @@ namespace UberAPI.Models
                 return hashCode;
             }
         }
-
-        #region Operators
-        #pragma warning disable 1591
-
-        public static bool operator ==(Error left, Error right)
-        {
-            return Equals(left, right);
-        }
-
-        public static bool operator !=(Error left, Error right)
-        {
-            return !Equals(left, right);
-        }
-
-        #pragma warning restore 1591
-        #endregion Operators
     }
 }

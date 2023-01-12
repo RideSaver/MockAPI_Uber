@@ -7,27 +7,28 @@ namespace UberAPI.Models
     [DataContract(Name = "request_id")]
     public class RequestId : IEquatable<RequestId>
     {
-        public RequestId(string productId = default(string), string requestId = default(string), string status = default(string), float surgeMultiplier = default(float), bool shared = default(bool), RequestIdDrivers drivers = default(RequestIdDrivers), RequestIdVehicle vehicle = default(RequestIdVehicle), RequestIdLocation location = default(RequestIdLocation), Trip pickup = default(Trip), Trip destination = default(Trip), RequestIdWaypoints waypoints = default(RequestIdWaypoints), RequestIdRiders riders = default(RequestIdRiders))
+        public RequestId() { }
+        public RequestId(string productId, string requestId, string status, float surgeMultiplier, bool shared, RequestIdDrivers drivers, RequestIdVehicle vehicle, RequestIdLocation location, Trip pickup, Trip destination, RequestIdWaypoints waypoints, RequestIdRiders riders)
         {
-            this.ProductId = productId;
-            this.Id = requestId;
-            this.Status = status;
-            this.SurgeMultiplier = surgeMultiplier;
-            this.Shared = shared;
-            this.Drivers = drivers;
-            this.Vehicle = vehicle;
-            this.Location = location;
-            this.Pickup = pickup;
-            this.Destination = destination;
-            this.Waypoints = waypoints;
-            this.Riders = riders;
+            ProductId = productId;
+            _RequestId = requestId;
+            Status = status;
+            SurgeMultiplier = surgeMultiplier;
+            Shared = shared;
+            Drivers = drivers;
+            Vehicle = vehicle;
+            Location = location;
+            Pickup = pickup;
+            Destination = destination;
+            Waypoints = waypoints;
+            Riders = riders;
         }
 
         [DataMember]
         public string? ProductId { get; set; }
 
         [DataMember]
-        public string? Id { get; set; }
+        public string? _RequestId { get; set; }
 
         [DataMember]
         public string? Status { get; set; }
@@ -63,7 +64,7 @@ namespace UberAPI.Models
             var sb = new StringBuilder();
             sb.Append("class RequestId {\n");
             sb.Append("  ProductId: ").Append(ProductId).Append("\n");
-            sb.Append("  RequestId: ").Append(Id).Append("\n");
+            sb.Append("  RequestId: ").Append(_RequestId).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  SurgeMultiplier: ").Append(SurgeMultiplier).Append("\n");
             sb.Append("  Shared: ").Append(Shared).Append("\n");
@@ -100,9 +101,9 @@ namespace UberAPI.Models
                     ProductId.Equals(other.ProductId)
                 ) && 
                 (
-                    Id == other.Id ||
-                    Id != null &&
-                    Id.Equals(other.Id)
+                    _RequestId == other._RequestId ||
+                    _RequestId != null &&
+                    _RequestId.Equals(other._RequestId)
                 ) && 
                 (
                     Status == other.Status ||
@@ -164,8 +165,8 @@ namespace UberAPI.Models
                 // Suitable nullity checks etc, of course :)
                     if (ProductId != null)
                     hashCode = hashCode * 59 + ProductId.GetHashCode();
-                    if (Id != null)
-                    hashCode = hashCode * 59 + Id.GetHashCode();
+                    if (_RequestId != null)
+                    hashCode = hashCode * 59 + _RequestId.GetHashCode();
                     if (Status != null)
                     hashCode = hashCode * 59 + Status.GetHashCode();
                     if (SurgeMultiplier != null)

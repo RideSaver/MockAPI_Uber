@@ -48,7 +48,7 @@ namespace UberAPI.Registry
         {
             var request = new RequestId()
             {
-                Id = Guid.NewGuid().ToString(),
+                _RequestId = Guid.NewGuid().ToString(),
                 ProductId = "EXEMPT",
                 Status = "Arriving Shortly",
                 SurgeMultiplier = 0,
