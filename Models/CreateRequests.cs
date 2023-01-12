@@ -8,30 +8,17 @@ namespace UberAPI.Models
     [DataContract(Name = "CreateRequests")]
     public class CreateRequests : IEquatable<CreateRequests>, IValidatableObject
     {
-        [JsonConstructorAttribute]
-        protected CreateRequests() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="CreateRequests" /> class.
-        /// </summary>
-        /// <param name="fareId">The key for the upfront fare of a ride. (required).</param>
-        /// <param name="productId">The unique ID of the product being requested. (required).</param>
-        /// <param name="startLatitude">The beginning or “pickup” latitude. Either this or start_place_id must be specified. (required).</param>
-        /// <param name="endLatitude">The final or destination latitude. Either this or end_place_id may be specified. (required).</param>
-        /// <param name="startLongitude">The beginning or “pickup” longitude. Either this or start_place_id must be specified. (required).</param>
-        /// <param name="endLongitude">The final or destination longitude. Either this or end_place_id may be specified./td&gt; (required).</param>
-        /// <param name="surgeConfirmationId">The unique identifier of the surge session for a user. Required when returned from a 409 Conflict response on previous POST attempt..</param>
-        /// <param name="paymentMethodId">The unique identifier of the payment method selected by a user. If set, the trip will be requested using this payment method. If not set, the trip will be requested using the user&#39;s last used payment method..</param>
-        /// <param name="seats">The number of seats required for uberPOOL. Default and maximum value is 2..</param>
-        public CreateRequests(string? fareId = default(string), string? productId = default(string), float startLatitude = default(float), float endLatitude = default(float), float startLongitude = default(float), float endLongitude = default(float), string? surgeConfirmationId = default(string), string? paymentMethodId = default(string), int seats = default(int))
+        [JsonConstructor]
+        public CreateRequests(string? fare_id = default(string), string? product_id = default(string), float startLatitude = default(float), float endLatitude = default(float), float startLongitude = default(float), float endLongitude = default(float), string? surge_confirmation_id = default(string), string? payment_method_id = default(string), int seats = default(int))
         {
-            this.FareId = fareId;
-            this.ProductId = productId;
+            this.FareId = fare_id;
+            this.ProductId = product_id;
             this.StartLatitude = startLatitude;
             this.EndLatitude = endLatitude;
             this.StartLongitude = startLongitude;
             this.EndLongitude = endLongitude;
-            this.SurgeConfirmationId = surgeConfirmationId;
-            this.PaymentMethodId = paymentMethodId;
+            this.SurgeConfirmationId = surge_confirmation_id;
+            this.PaymentMethodId = payment_method_id;
             this.Seats = seats;
         }
 
