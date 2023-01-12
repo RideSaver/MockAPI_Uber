@@ -34,29 +34,29 @@ namespace UberAPI.Controllers
         [Route("/request")]
         [Consumes("application/json")]
         [Produces("application/json")]
-        public async Task<IActionResult> PostRequest([FromBody] CreateRequests requestInfo)
+        public async Task<IActionResult> PostRequest([FromBody] CreateRequests body)
         {
             _logger.LogInformation("[UberAPI:RequestsController:PostRequest] Controller endpoint invoked..");
 
-            if (requestInfo is null) { return BadRequest("Invalid request data!"); }
+            if (body is null) { return BadRequest("Invalid request data!"); }
 
             var rideRequest = new CreateRequests
             {
-                FareId = requestInfo.FareId.ToString(),
-                ProductId = requestInfo.ProductId.ToString(),
-                StartLatitude = requestInfo.StartLatitude,
-                EndLatitude = requestInfo.EndLatitude,
-                StartLongitude = requestInfo.StartLongitude,
-                EndLongitude = requestInfo.EndLongitude,
-                SurgeConfirmationId = requestInfo.SurgeConfirmationId,
-                PaymentMethodId = requestInfo.PaymentMethodId,
-                Seats = requestInfo.Seats
+                FareId = body.FareId.ToString(),
+                ProductId = body.ProductId.ToString(),
+                StartLatitude = body.StartLatitude,
+                EndLatitude = body.EndLatitude,
+                StartLongitude = body.StartLongitude,
+                EndLongitude = body.EndLongitude,
+                SurgeConfirmationId = body.SurgeConfirmationId,
+                PaymentMethodId = body.PaymentMethodId,
+                Seats = body.Seats
             };
 
             _logger.LogInformation($"[UberAPI:RequestsController:PostRequest] Instance (CreateRequest) received from the client... \n{rideRequest}");
 
             var requestInstance = await _requestsRepository.PostRequest(rideRequest);
-            requestInstance.ProductId = requestInfo.ProductId!.ToString();
+            requestInstance.ProductId = body.ProductId!.ToString();
 
             _logger.LogInformation($"[UberAPI:RequestsController:PostRequest] Returning (RequestId) received from the client... \n{requestInstance}");
 

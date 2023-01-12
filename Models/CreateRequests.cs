@@ -8,37 +8,35 @@ namespace UberAPI.Models
     [DataContract(Name = "CreateRequests")]
     public class CreateRequests : IEquatable<CreateRequests>, IValidatableObject
     {
-        [JsonConstructorAttribute]
-        protected CreateRequests() { }
-        public CreateRequests(string? fareId = default(string), string? productId = default(string), float startLatitude = default(float), float endLatitude = default(float), float startLongitude = default(float), float endLongitude = default(float), string? surgeConfirmationId = default(string), string? paymentMethodId = default(string), int seats = default(int))
+        public CreateRequests(string? fare_id = default, string? product_id = default, float start_latitude = default, float end_latitude = default, float start_longitude = default, float end_longitude = default, string? surgeConfirmationId = default, string? paymentMethodId = default, int seats = default)
         {
-            this.FareId = fareId;
-            this.ProductId = productId;
-            this.StartLatitude = startLatitude;
-            this.EndLatitude = endLatitude;
-            this.StartLongitude = startLongitude;
-            this.EndLongitude = endLongitude;
-            this.SurgeConfirmationId = surgeConfirmationId;
-            this.PaymentMethodId = paymentMethodId;
-            this.Seats = seats;
+            FareId = fare_id;
+            ProductId = product_id;
+            StartLatitude = start_latitude;
+            EndLatitude = end_latitude;
+            StartLongitude = start_longitude;
+            EndLongitude = end_longitude;
+            SurgeConfirmationId = surgeConfirmationId;
+            PaymentMethodId = paymentMethodId;
+            Seats = seats;
         }
 
-        [DataMember(Name = "fareId", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember(Name = "fare_id", EmitDefaultValue = false)]
         public string? FareId { get; set; }
 
-        [DataMember(Name = "productId", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember(Name = "product_id", EmitDefaultValue = false)]
         public string? ProductId { get; set; }
 
-        [DataMember(Name = "startLatitude", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember(Name = "start_latitude", EmitDefaultValue = false)]
         public float? StartLatitude { get; set; }
 
-        [DataMember(Name = "endLatitude", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember(Name = "end_latitude", EmitDefaultValue = false)]
         public float? EndLatitude { get; set; }
 
-        [DataMember(Name = "startLongitude", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember(Name = "start_longitude", EmitDefaultValue = false)]
         public float? StartLongitude { get; set; }
 
-        [DataMember(Name = "endLongitude", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember(Name = "end_longitude", EmitDefaultValue = false)]
         public float? EndLongitude { get; set; }
 
         [DataMember(Name = "surgeConfirmationId", EmitDefaultValue = false)]
