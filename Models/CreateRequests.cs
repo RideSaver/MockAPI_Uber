@@ -8,9 +8,9 @@ namespace UberAPI.Models
     [DataContract(Name = "CreateRequests")]
     public class CreateRequests : IEquatable<CreateRequests>, IValidatableObject
     {
+        [JsonConstructor]
         public CreateRequests() { }
 
-        [JsonConstructor]
         public CreateRequests(string fareId, string productId, float startLatitude, float endLatitude, float startLongitude, float endLongitude, string surgeConfirmationId, string paymentMethodId, int seats = 4)
         {
             FareId = fareId;
@@ -24,31 +24,31 @@ namespace UberAPI.Models
             Seats = seats;
         }
 
-        [DataMember(Name = "fareId")]
+        [DataMember]
         public string FareId { get; set; }
 
-        [DataMember(Name = "productId")]
+        [DataMember]
         public string ProductId { get; set; }
 
-        [DataMember(Name = "startLatitude")]
+        [DataMember]
         public float StartLatitude { get; set; }
 
-        [DataMember(Name = "endLatitude")]
+        [DataMember]
         public float EndLatitude { get; set; }
 
-        [DataMember(Name = "startLongitude")]
+        [DataMember]
         public float StartLongitude { get; set; }
 
-        [DataMember(Name = "endLongitude")]
+        [DataMember]
         public float EndLongitude { get; set; }
 
-        [DataMember(Name = "surgeConfirmationId")]
+        [DataMember]
         public string SurgeConfirmationId { get; set; }
 
-        [DataMember(Name = "paymentMethodId")]
+        [DataMember]
         public string PaymentMethodId { get; set; }
 
-        [DataMember(Name = "seats")]
+        [DataMember]
         public int Seats { get; set; }
 
         public override string ToString()

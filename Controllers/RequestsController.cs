@@ -40,7 +40,7 @@ namespace UberAPI.Controllers
 
             if (body is null) { return BadRequest("Invalid request data!"); }
 
-            var rideRequest = new CreateRequests
+            var rideRequest = new CreateRequests()
             {
                 FareId = body.FareId.ToString(),
                 ProductId = body.ProductId.ToString(),
@@ -55,7 +55,7 @@ namespace UberAPI.Controllers
 
             _logger.LogInformation($"[UberAPI:RequestsController:PostRequest] Instance (CreateRequest) received from the client... \n{rideRequest}");
 
-            var requestInstance = await _requestsRepository.PostRequest(rideRequest);
+            var requestInstance = await _requestsRepository.PostRequest(body);
             requestInstance.ProductId = body.ProductId!.ToString();
 
             _logger.LogInformation($"[UberAPI:RequestsController:PostRequest] Returning (RequestId) received from the client... \n{requestInstance}");
