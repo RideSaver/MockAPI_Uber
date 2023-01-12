@@ -9,46 +9,59 @@ namespace UberAPI.Models
     public class CreateRequests : IEquatable<CreateRequests>, IValidatableObject
     {
         [JsonConstructorAttribute]
-        public CreateRequests() { }
-        public CreateRequests(string? fareId = default, string? productId = default, float? startLatitude = default(float), float? endLatitude = default(float), float? startLongitude = default(float), float? endLongitude = default(float), string? surgeConfirmationId = default(string), string? paymentMethodId = default(string), int? seats = default(int))
+        protected CreateRequests() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CreateRequests" /> class.
+        /// </summary>
+        /// <param name="fareId">The key for the upfront fare of a ride. (required).</param>
+        /// <param name="productId">The unique ID of the product being requested. (required).</param>
+        /// <param name="startLatitude">The beginning or “pickup” latitude. Either this or start_place_id must be specified. (required).</param>
+        /// <param name="endLatitude">The final or destination latitude. Either this or end_place_id may be specified. (required).</param>
+        /// <param name="startLongitude">The beginning or “pickup” longitude. Either this or start_place_id must be specified. (required).</param>
+        /// <param name="endLongitude">The final or destination longitude. Either this or end_place_id may be specified./td&gt; (required).</param>
+        /// <param name="surgeConfirmationId">The unique identifier of the surge session for a user. Required when returned from a 409 Conflict response on previous POST attempt..</param>
+        /// <param name="paymentMethodId">The unique identifier of the payment method selected by a user. If set, the trip will be requested using this payment method. If not set, the trip will be requested using the user&#39;s last used payment method..</param>
+        /// <param name="seats">The number of seats required for uberPOOL. Default and maximum value is 2..</param>
+        public CreateRequests(string fareId = default(string), string productId = default(string), float startLatitude = default(float), float endLatitude = default(float), float startLongitude = default(float), float endLongitude = default(float), string surgeConfirmationId = default(string), string paymentMethodId = default(string), int seats = default(int))
         {
-            FareId = fareId;
-            ProductId = productId;
-            StartLatitude = startLatitude;
-            EndLatitude = endLatitude;
-            StartLongitude = startLongitude;
-            EndLongitude = endLongitude;
-            SurgeConfirmationId = surgeConfirmationId;
-            PaymentMethodId = paymentMethodId;
-            Seats = seats;
+            this.FareId = fareId;
+            this.ProductId = productId;
+            this.StartLatitude = startLatitude;
+            this.EndLatitude = endLatitude;
+            this.StartLongitude = startLongitude;
+            this.EndLongitude = endLongitude;
+            this.SurgeConfirmationId = surgeConfirmationId;
+            this.PaymentMethodId = paymentMethodId;
+            this.Seats = seats;
         }
 
-        [DataMember(Name = "fareId")]
-        public string? FareId { get; set; }
+        [DataMember(Name = "fare_id", IsRequired = true, EmitDefaultValue = true)]
+        public string FareId { get; set; }
 
-        [DataMember(Name = "productId")]
-        public string? ProductId { get; set; }
+        [DataMember(Name = "product_id", IsRequired = true, EmitDefaultValue = true)]
+        public string ProductId { get; set; }
 
-        [DataMember(Name = "startLatitude")]
-        public float? StartLatitude { get; set; }
+        [DataMember(Name = "start_latitude", IsRequired = true, EmitDefaultValue = true)]
+        public float StartLatitude { get; set; }
 
-        [DataMember(Name = "endLatitude")]
-        public float? EndLatitude { get; set; }
+        [DataMember(Name = "end_latitude", IsRequired = true, EmitDefaultValue = true)]
+        public float EndLatitude { get; set; }
 
-        [DataMember(Name = "startLongitude")]
-        public float? StartLongitude { get; set; }
+        [DataMember(Name = "start_longitude", IsRequired = true, EmitDefaultValue = true)]
+        public float StartLongitude { get; set; }
 
-        [DataMember(Name = "endLongitude")]
-        public float? EndLongitude { get; set; }
+        [DataMember(Name = "end_longitude", IsRequired = true, EmitDefaultValue = true)]
+        public float EndLongitude { get; set; }
 
-        [DataMember(Name = "surgeConfirmationId")]
-        public string? SurgeConfirmationId { get; set; }
+        [DataMember(Name = "surge_confirmation_id", EmitDefaultValue = false)]
+        public string SurgeConfirmationId { get; set; }
 
-        [DataMember(Name = "paymentMethodId")]
-        public string? PaymentMethodId { get; set; }
+        [DataMember(Name = "payment_method_id", EmitDefaultValue = false)]
+        public string PaymentMethodId { get; set; }
 
-        [DataMember(Name = "seats")]
-        public int? Seats { get; set; }
+        [DataMember(Name = "seats", EmitDefaultValue = false)]
+        public int Seats { get; set; }
+
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
@@ -68,7 +81,7 @@ namespace UberAPI.Models
 
         public string ToJson()
         {
-            return JsonConvert.SerializeObject(this, Formatting.Indented);
+            return JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
         }
 
         public override bool Equals(object input)
