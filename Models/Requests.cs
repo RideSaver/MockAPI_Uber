@@ -241,13 +241,13 @@ namespace UberAPI.Models
         {
 
             // to ensure "fareId" is required (not null)
-            if (fareId == null)
+            if (FareId == null)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("fareId is a required property for CreateRequests and cannot be null");
             }
 
             // to ensure "productId" is required (not null)
-            if (productId == null)
+            if (ProductId == null)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("productId is a required property for CreateRequests and cannot be null");
             }
