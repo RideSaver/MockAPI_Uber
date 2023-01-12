@@ -10,6 +10,9 @@ namespace UberAPI.Repository
         public async Task<RequestEstimateResponse> PostRequestEstimate(string requestId) =>  await Task.FromResult(EstimateGenerator.GenerateEstimate());
         public void DeleteRequest(string requestId) => throw new NotImplementedException();
         public void PatchRequest(string requestId) => throw new NotImplementedException();
-        public void PostRequest(CreateRequests body) => throw new NotImplementedException();
+        public async Task<RequestId> PostRequest(CreateRequests request)
+        {
+            return await Task.FromResult(RequestGenerator.GenerateRequest());
+        }
     }
 }

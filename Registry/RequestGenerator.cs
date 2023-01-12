@@ -11,13 +11,13 @@ namespace UberAPI.Registry
             .RuleFor(o => o.SmsNumber, f => f.Phone.PhoneNumber())
             .RuleFor(o => o.Rating, f => f.Random.Int(5, 25))
             .RuleFor(o => o.Name, f => f.Name.FirstName())
-            .RuleFor(o => o.PictureUrl, () => "");
+            .RuleFor(o => o.PictureUrl, () => "Exempt");
 
         public static Faker<RequestIdVehicle> RV_FAKER_CONFIG = new AutoFaker<RequestIdVehicle>()
             .RuleFor(o => o.Make, f => f.Vehicle.Manufacturer())
             .RuleFor(o => o.Model, f => f.Vehicle.Model())
             .RuleFor(o => o.LicensePlate, () => "XY54FCZ")
-            .RuleFor(o => o.PictureUrl, () => "");
+            .RuleFor(o => o.PictureUrl, () => "Exempt");
 
         public static Faker<RequestIdLocation> RL_FAKER_CONFIG = new AutoFaker<RequestIdLocation>()
             .RuleFor(o => o.Latitude, () => 180.0f)
@@ -34,7 +34,8 @@ namespace UberAPI.Registry
 
         public static Faker<RequestIdRiders> RR_FAKER_CONFIG = new AutoFaker<RequestIdRiders>()
             .RuleFor(o => o.RiderId, f => f.Random.Guid().ToString())
-            .RuleFor(o => o.FirstName, f => f.Name.FirstName());
+            .RuleFor(o => o.FirstName, f => f.Name.FirstName())
+            .RuleFor(o => o.Me, () => true);
 
         public static Faker<RequestIdWaypoints> RW_FAKER_CONFIG = new AutoFaker<RequestIdWaypoints>()
             .RuleFor(o => o.RiderId, f => f.Random.Guid().ToString())
@@ -47,8 +48,8 @@ namespace UberAPI.Registry
         {
             var request = new RequestId()
             {
-                ProductId = "product-id-place-holder",
-                Id = "request-id-place-holder",
+                Id = Guid.NewGuid().ToString(),
+                ProductId = "EXEMPT",
                 Status = "Arriving Shortly",
                 SurgeMultiplier = 0,
                 Shared = false,

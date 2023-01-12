@@ -8,13 +8,13 @@ namespace UberAPI.Models
     public class RequestIdWaypoints : IEquatable<RequestIdWaypoints>
     { 
         [DataMember(Name="rider_id")]
-        public string RiderId { get; set; }
+        public string? RiderId { get; set; }
 
         [DataMember(Name="latitude")]
         public float? Latitude { get; set; }
 
         [DataMember(Name="type")]
-        public string Type { get; set; }
+        public string? Type { get; set; }
 
         [DataMember(Name="longitude")]
         public float? Longitude { get; set; }

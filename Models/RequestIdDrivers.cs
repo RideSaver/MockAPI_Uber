@@ -8,19 +8,19 @@ namespace UberAPI.Models
     public class RequestIdDrivers : IEquatable<RequestIdDrivers>
     { 
         [DataMember(Name="phone_number")]
-        public string PhoneNumber { get; set; }
+        public string? PhoneNumber { get; set; }
 
         [DataMember(Name="sms_number")]
-        public string SmsNumber { get; set; }
+        public string? SmsNumber { get; set; }
 
         [DataMember(Name="rating")]
         public float? Rating { get; set; }
 
         [DataMember(Name="picture_url")]
-        public string PictureUrl { get; set; }
+        public string? PictureUrl { get; set; }
 
         [DataMember(Name="name")]
-        public string Name { get; set; }
+        public string? Name { get; set; }
         public override string ToString()
         {
             var sb = new StringBuilder();

@@ -8,7 +8,7 @@ namespace UberAPI.Models
     public class Trip : IEquatable<Trip>
     { 
         [DataMember(Name="alias")]
-        public string Alias { get; set; }
+        public string? Alias { get; set; }
 
         [DataMember(Name="latitude")]
         public float? Latitude { get; set; }
@@ -17,10 +17,10 @@ namespace UberAPI.Models
         public float? Longitude { get; set; }
 
         [DataMember(Name="name")]
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
         [DataMember(Name="address")]
-        public string Address { get; set; }
+        public string? Address { get; set; }
 
         [DataMember(Name="eta")]
         public float? Eta { get; set; }

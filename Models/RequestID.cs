@@ -8,13 +8,13 @@ namespace UberAPI.Models
     public class RequestId : IEquatable<RequestId>
     { 
         [DataMember(Name="product_id")]
-        public string ProductId { get; set; }
+        public string? ProductId { get; set; }
 
         [DataMember(Name="request_id")]
-        public string Id { get; set; }
+        public string? Id { get; set; }
 
         [DataMember(Name="status")]
-        public string Status { get; set; }
+        public string? Status { get; set; }
 
         [DataMember(Name="surge_multiplier")]
         public float? SurgeMultiplier { get; set; }
@@ -23,26 +23,25 @@ namespace UberAPI.Models
         public bool? Shared { get; set; }
 
         [DataMember(Name="drivers")]
-        public RequestIdDrivers Drivers { get; set; }
+        public RequestIdDrivers? Drivers { get; set; }
 
         [DataMember(Name="vehicle")]
-        public RequestIdVehicle Vehicle { get; set; }
+        public RequestIdVehicle? Vehicle { get; set; }
 
         [DataMember(Name="location")]
-        public RequestIdLocation Location { get; set; }
+        public RequestIdLocation? Location { get; set; }
 
         [DataMember(Name="pickup")]
-        public List<Trip> Pickup { get; set; }
+        public List<Trip>? Pickup { get; set; }
 
         [DataMember(Name="destination")]
-        public Trip Destination { get; set; }
-
+        public Trip? Destination { get; set; }
 
         [DataMember(Name="waypoints")]
-        public RequestIdWaypoints Waypoints { get; set; }
+        public RequestIdWaypoints? Waypoints { get; set; }
 
         [DataMember(Name="riders")]
-        public RequestIdRiders Riders { get; set; }
+        public RequestIdRiders? Riders { get; set; }
         public override string ToString()
         {
             var sb = new StringBuilder();

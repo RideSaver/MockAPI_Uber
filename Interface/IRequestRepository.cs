@@ -4,7 +4,7 @@ namespace UberAPI.Interface
 {
     public interface IRequestRepository
     {
-        void PostRequest(CreateRequests body);
+        Task<RequestId> PostRequest(CreateRequests request);
         void DeleteRequest(string requestId);
         RequestId GetRequest(string requestId);
         void PatchRequest(string requestId);

@@ -32,6 +32,28 @@ namespace UberAPI.Controllers
         }
 
         [HttpPost]
+        [Route("/request")]
+        [Consumes("application/json")]
+        [Produces("application/json")]
+        public async Task<IActionResult> PostRequest([FromBody] CreateRequests requestInfo)
+        {
+            _logger.LogInformation("[UberAPI:RequestsController:PostRequest] Controller endpoint invoked..");
+
+            if (requestInfo is null) { return BadRequest("Invalid request data!"); }
+
+            var requestInstance = await _requestsRepository.PostRequest(requestInfo);
+            requestInstance.ProductId = requestInfo.ProductId!.ToString();
+
+            return Content(requestInstance.ToJson(), "application/json");
+        }
+
+        [HttpDelete][Route("/request/{request_id}")]
+        public IActionResult DeleteRequest([FromRoute][Required] string requestId) => new NoContentResult();
+
+        [HttpPatch][Route("/request/{request_id}")]
+        public IActionResult PatchRequest([FromRoute][Required] string requestId) => new NoContentResult();
+
+        [HttpPost]
         [Route("/requests/estimate")]
         [Produces("application/json")]
         [Consumes("application/json")]
@@ -48,14 +70,5 @@ namespace UberAPI.Controllers
 
             return Content(estimate.ToJson(), "application/json");
         }
-
-        [HttpPost][Route("/request")] 
-        public IActionResult PostRequest([FromBody] CreateRequests requestInfo) => new NoContentResult();
-
-        [HttpDelete][Route("/request/{request_id}")]
-        public IActionResult DeleteRequest([FromRoute][Required] string requestId) => new NoContentResult();
-
-        [HttpPatch][Route("/request/{request_id}")]
-        public IActionResult PatchRequest([FromRoute][Required] string requestId) => new NoContentResult();
     }
 }

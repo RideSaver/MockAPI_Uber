@@ -8,16 +8,16 @@ namespace UberAPI.Models
     public class RequestIdVehicle : IEquatable<RequestIdVehicle>
     { 
         [DataMember(Name="make")]
-        public string Make { get; set; }
+        public string? Make { get; set; }
 
         [DataMember(Name="model")]
-        public string Model { get; set; }
+        public string? Model { get; set; }
 
         [DataMember(Name="license_plate")]
-        public string LicensePlate { get; set; }
+        public string? LicensePlate { get; set; }
 
         [DataMember(Name="picture_url")]
-        public string PictureUrl { get; set; }
+        public string? PictureUrl { get; set; }
         public override string ToString()
         {
             var sb = new StringBuilder();

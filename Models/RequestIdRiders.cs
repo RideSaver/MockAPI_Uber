@@ -8,10 +8,10 @@ namespace UberAPI.Models
     public class RequestIdRiders : IEquatable<RequestIdRiders>
     { 
         [DataMember(Name="rider_id")]
-        public string RiderId { get; set; }
+        public string? RiderId { get; set; }
 
         [DataMember(Name="first_name")]
-        public string FirstName { get; set; }
+        public string? FirstName { get; set; }
 
         [DataMember(Name="me")]
         public bool? Me { get; set; }
@@ -30,7 +30,6 @@ namespace UberAPI.Models
         {
             return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
-
         public override bool Equals(object obj)
         {
             if (ReferenceEquals(null, obj)) return false;
