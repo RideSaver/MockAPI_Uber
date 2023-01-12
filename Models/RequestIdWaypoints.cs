@@ -3,10 +3,18 @@ using System.Runtime.Serialization;
 using Newtonsoft.Json;
 
 namespace UberAPI.Models
-{ 
-    [DataContract]
+{
+    [DataContract(Name = "request_id_waypoints")]
     public class RequestIdWaypoints : IEquatable<RequestIdWaypoints>
-    { 
+    {
+        public RequestIdWaypoints(string riderId = default(string), float latitude = default(float), string type = default(string), float longitude = default(float))
+        {
+            this.RiderId = riderId;
+            this.Latitude = latitude;
+            this.Type = type;
+            this.Longitude = longitude;
+        }
+
         [DataMember(Name="rider_id")]
         public string? RiderId { get; set; }
 

@@ -56,7 +56,7 @@ namespace UberAPI.Registry
                 Drivers = RD_FAKER_CONFG.Generate(),
                 Vehicle = RV_FAKER_CONFIG.Generate(),
                 Location = RL_FAKER_CONFIG.Generate(),
-                Pickup = T_FAKER_CONFIG.Generate(3),
+                Pickup = T_FAKER_CONFIG.Generate(),
                 Destination = T_FAKER_CONFIG.Generate(),
                 Waypoints = RW_FAKER_CONFIG.Generate(),
                 Riders = RR_FAKER_CONFIG.Generate(),

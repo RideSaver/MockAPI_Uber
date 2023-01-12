@@ -3,10 +3,19 @@ using System.Runtime.Serialization;
 using Newtonsoft.Json;
 
 namespace UberAPI.Models
-{ 
-    [DataContract]
+{
+    [DataContract(Name = "request_id_drivers")]
     public class RequestIdDrivers : IEquatable<RequestIdDrivers>
-    { 
+    {
+        public RequestIdDrivers(string phoneNumber = default(string), string smsNumber = default(string), float rating = default(float), string pictureUrl = default(string), string name = default(string))
+        {
+            this.PhoneNumber = phoneNumber;
+            this.SmsNumber = smsNumber;
+            this.Rating = rating;
+            this.PictureUrl = pictureUrl;
+            this.Name = name;
+        }
+
         [DataMember(Name="phone_number")]
         public string? PhoneNumber { get; set; }
 

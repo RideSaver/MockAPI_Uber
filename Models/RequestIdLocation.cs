@@ -3,10 +3,17 @@ using System.Runtime.Serialization;
 using Newtonsoft.Json;
 
 namespace UberAPI.Models
-{ 
-    [DataContract]
+{
+    [DataContract(Name = "request_id_location")]
     public class RequestIdLocation : IEquatable<RequestIdLocation>
-    { 
+    {
+        public RequestIdLocation(float latitude = default(float), float longitude = default(float), int bearing = default(int))
+        {
+            this.Latitude = latitude;
+            this.Longitude = longitude;
+            this.Bearing = bearing;
+        }
+
         [DataMember(Name="latitude")]
         public float? Latitude { get; set; }
 

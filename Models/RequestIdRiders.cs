@@ -3,10 +3,17 @@ using System.Runtime.Serialization;
 using Newtonsoft.Json;
 
 namespace UberAPI.Models
-{ 
-    [DataContract]
+{
+    [DataContract(Name = "request_id_riders")]
     public class RequestIdRiders : IEquatable<RequestIdRiders>
-    { 
+    {
+        public RequestIdRiders(string riderId = default(string), string firstName = default(string), bool me = default(bool))
+        {
+            this.RiderId = riderId;
+            this.FirstName = firstName;
+            this.Me = me;
+        }
+
         [DataMember(Name="rider_id")]
         public string? RiderId { get; set; }
 

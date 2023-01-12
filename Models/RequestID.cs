@@ -4,9 +4,25 @@ using Newtonsoft.Json;
 
 namespace UberAPI.Models
 { 
-    [DataContract]
+    [DataContract(Name = "request_id")]
     public class RequestId : IEquatable<RequestId>
-    { 
+    {
+        public RequestId(string productId = default(string), string requestId = default(string), string status = default(string), float surgeMultiplier = default(float), bool shared = default(bool), RequestIdDrivers drivers = default(RequestIdDrivers), RequestIdVehicle vehicle = default(RequestIdVehicle), RequestIdLocation location = default(RequestIdLocation), Trip pickup = default(Trip), Trip destination = default(Trip), RequestIdWaypoints waypoints = default(RequestIdWaypoints), RequestIdRiders riders = default(RequestIdRiders))
+        {
+            this.ProductId = productId;
+            this.Id = requestId;
+            this.Status = status;
+            this.SurgeMultiplier = surgeMultiplier;
+            this.Shared = shared;
+            this.Drivers = drivers;
+            this.Vehicle = vehicle;
+            this.Location = location;
+            this.Pickup = pickup;
+            this.Destination = destination;
+            this.Waypoints = waypoints;
+            this.Riders = riders;
+        }
+
         [DataMember(Name="product_id")]
         public string? ProductId { get; set; }
 
@@ -32,7 +48,7 @@ namespace UberAPI.Models
         public RequestIdLocation? Location { get; set; }
 
         [DataMember(Name="pickup")]
-        public List<Trip>? Pickup { get; set; }
+        public Trip Pickup { get; set; }
 
         [DataMember(Name="destination")]
         public Trip? Destination { get; set; }
@@ -121,7 +137,7 @@ namespace UberAPI.Models
                 (
                     Pickup == other.Pickup ||
                     Pickup != null &&
-                    Pickup.SequenceEqual(other.Pickup)
+                    Pickup.Equals(other.Pickup)
                 ) && 
                 (
                     Destination == other.Destination ||

@@ -3,10 +3,20 @@ using System.Runtime.Serialization;
 using Newtonsoft.Json;
 
 namespace UberAPI.Models
-{ 
-    [DataContract]
+{
+    [DataContract(Name = "trip")]
     public class Trip : IEquatable<Trip>
-    { 
+    {
+        public Trip(string alias = default(string), float latitude = default(float), float longitude = default(float), string name = default(string), string address = default(string), float eta = default(float))
+        {
+            this.Alias = alias;
+            this.Latitude = latitude;
+            this.Longitude = longitude;
+            this.Name = name;
+            this.Address = address;
+            this.Eta = eta;
+        }
+
         [DataMember(Name="alias")]
         public string? Alias { get; set; }
 
