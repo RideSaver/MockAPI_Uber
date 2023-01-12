@@ -8,18 +8,20 @@ namespace UberAPI.Models
     [DataContract(Name = "CreateRequests")]
     public class CreateRequests : IEquatable<CreateRequests>, IValidatableObject
     {
+        public CreateRequests() { }
+
         [JsonConstructor]
-        public CreateRequests(string? fare_id = default(string), string? product_id = default(string), float startLatitude = default(float), float endLatitude = default(float), float startLongitude = default(float), float endLongitude = default(float), string? surge_confirmation_id = default(string), string? payment_method_id = default(string), int seats = default(int))
+        public CreateRequests(string fare_id, string product_id, float start_latitude, float end_latitude, float start_longitude, float end_longitude, string surge_confirmation_id, string payment_method_id, int seats = 4)
         {
-            this.FareId = fare_id;
-            this.ProductId = product_id;
-            this.StartLatitude = startLatitude;
-            this.EndLatitude = endLatitude;
-            this.StartLongitude = startLongitude;
-            this.EndLongitude = endLongitude;
-            this.SurgeConfirmationId = surge_confirmation_id;
-            this.PaymentMethodId = payment_method_id;
-            this.Seats = seats;
+            FareId = fare_id;
+            ProductId = product_id;
+            StartLatitude = start_latitude;
+            EndLatitude = end_latitude;
+            StartLongitude = start_longitude;
+            EndLongitude = end_longitude;
+            SurgeConfirmationId = surge_confirmation_id;
+            PaymentMethodId = payment_method_id;
+            Seats = seats;
         }
 
         [DataMember(Name = "fare_id", IsRequired = true)]
@@ -68,7 +70,7 @@ namespace UberAPI.Models
 
         public string ToJson()
         {
-            return JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
+            return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
 
         public override bool Equals(object input)
