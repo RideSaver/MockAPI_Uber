@@ -21,12 +21,13 @@ namespace UberAPI.Controllers
         [HttpGet]
         [Route("/request/{request_id}")]
         [Produces("application/json")]
-        public async Task<IActionResult> GetRequest([FromRoute]string requestId)
+        public async Task<IActionResult> GetRequest(string request_id)
         {
             _logger.LogInformation("[UberAPI:RequestsController:GetRequest] Controller endpoint invoked..");
-            _logger.LogInformation($"[UberAPI:RequestsController:GetRequest] Data Received: Request ID: {requestId}");
+            _logger.LogInformation($"[UberAPI:RequestsController:GetRequest] Data Received: Request ID: {request_id}");
 
-            var requestInstance = await _requestsRepository.GetRequest(requestId);
+            var requestInstance = await _requestsRepository.GetRequest(request_id);
+            requestInstance._RequestId = request_id.ToString();
 
             _logger.LogInformation($"[UberAPI:RequestsController:GetRequest] Returning (RequestId) to the client... \n{requestInstance}");
 
