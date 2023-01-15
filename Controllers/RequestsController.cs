@@ -82,10 +82,6 @@ namespace UberAPI.Controllers
 
         [HttpDelete]
         [Route("/request/{request_id}")]
-        public IActionResult DeleteRequest([FromRoute][Required] string requestId) => new NoContentResult();
-
-        [HttpPatch]
-        [Route("/request/{request_id}")]
-        public IActionResult PatchRequest([FromRoute][Required] string requestId) => new NoContentResult();
+        public async Task<IActionResult> DeleteRequest(string request_id) => await Task.FromResult(new NoContentResult());
     }
 }
