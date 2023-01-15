@@ -6,7 +6,7 @@ namespace UberAPI.Interface
     {
         Task<RequestId> PostRequest(CreateRequests request);
         void DeleteRequest(string requestId);
-        RequestId GetRequest(string requestId);
+        Task<RequestId> GetRequest(string requestId);
         void PatchRequest(string requestId);
         Task<RequestEstimateResponse> PostRequestEstimate(string requestId);
     }
